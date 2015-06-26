@@ -62,6 +62,7 @@ public class SplashScreen extends Activity {
                 String url = res.getString(R.string.server_address) + res.getString(R.string.has_db_updated_address);
                 final DBAdapter dbAdapter = new DBAdapter(SplashScreen.this);
 
+
                 JsonArrayRequest jsArrRequest = new JsonArrayRequest
                         (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
