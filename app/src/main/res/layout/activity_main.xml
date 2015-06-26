@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ahomehk.constructioncity.MainActivity">
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:background="#dddddd"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_ads_next"
+        android:src="@drawable/ic_action_next_item"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:onClick="toNextPage" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_ads_prev"
+        android:src="@drawable/ic_action_previous_item"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:onClick="toPrevPage" />
+
+    <LinearLayout
+        android:id="@+id/ll_main_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pager"
+        android:background="@color/ll_main_buttons_background">
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gvButtons"
+            android:numColumns="3"
+            android:background="#00ffffff"
+            android:verticalSpacing="6dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:padding="16dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

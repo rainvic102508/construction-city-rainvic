@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="product" type="color">#455A64</item>
+    <item name="service" type="color">#5D4037</item>
+    <item name="job_reference" type="color">#424242</item>
+    <item name="else_color" type="color">#EF6C00</item>
+    <item name="pager_title" type="color">#757575</item>
+    <item name="pager_text" type="color">#EEEEEE</item>
+    <item name="sticky_header" type="color">#757575</item>
+    <item name="actionbar_text_color" type="color">#EEEEEE</item>
+    <item name="actionbar_background_color" type="color">#616161</item>
+
+    <item name="selected_color" type="color">#77777777</item>
+    <item name="splash_text" type="color">#a71a1a</item>
+    <item name="main_menu_text" type="color">#ffeeeeee</item>
+    <item name="main_menu_text_shadow" type="color">#e7171717</item>
+    <item name="main_menu_icon_back" type="color">#55ffffff</item>
+
+    <!-- activity_main.xml -->
+    <item name="ll_main_buttons_background" type="color">#ffffff</item>
+
+</resources> 
