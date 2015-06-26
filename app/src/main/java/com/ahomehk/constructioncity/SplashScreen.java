@@ -140,6 +140,7 @@ public class SplashScreen extends Activity {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
+
                                 Toast.makeText(SplashScreen.this, "volley error!!\n" + error.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
