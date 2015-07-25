@@ -2,15 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/pb_item_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@xml/custom_progress"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
     <com.android.volley.toolbox.NetworkImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/iv_item_img"
-        android:src="@drawable/img_loading"
+        android:src="#00000000"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
+
 
 
 </RelativeLayout>

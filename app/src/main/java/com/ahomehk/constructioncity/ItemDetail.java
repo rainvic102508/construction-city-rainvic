@@ -81,7 +81,8 @@ public class ItemDetail extends ActionBarActivity {
     /**
      * Item details display
      */
-    private TextView tv_item_type, tv_price, tv_size, tv_company, tv_color, tv_finish;
+    private ImageView iv_price, iv_size, iv_company, iv_color, iv_finish, iv_place_of_origin, iv_lead_time, iv_extra_info;
+    private TextView tv_item_type, tv_price, tv_size, tv_company, tv_color, tv_finish, tv_place_of_origin, tv_lead_time, tv_extra_info;
 
 
 
@@ -97,7 +98,7 @@ public class ItemDetail extends ActionBarActivity {
 
         Resources res = ItemDetail.this.getResources();
         img_url += res.getString(R.string.server_address) + res.getString(R.string.image_folder) +
-                dataType + "/" + item.getItem_img_file() + "/";
+                item.getItem_img_file() + "/";
 
 
 
@@ -112,8 +113,26 @@ public class ItemDetail extends ActionBarActivity {
         tv_company = (TextView) findViewById(R.id.tv_company);
         tv_color = (TextView) findViewById(R.id.tv_color);
         tv_finish = (TextView) findViewById(R.id.tv_finishing);
+        tv_place_of_origin = (TextView) findViewById(R.id.tv_place_of_origin);
+        tv_lead_time = (TextView) findViewById(R.id.tv_lead_time);
+        tv_extra_info = (TextView) findViewById(R.id.tv_extra_info);
 
-        String size_txt = "(WxHxD) ";
+        iv_size = (ImageView) findViewById(R.id.iv_size);
+        iv_price = (ImageView) findViewById(R.id.iv_price);
+        iv_company = (ImageView) findViewById(R.id.iv_company);
+        iv_color = (ImageView) findViewById(R.id.iv_color);
+        iv_finish = (ImageView) findViewById(R.id.iv_finishing);
+        iv_place_of_origin = (ImageView) findViewById(R.id.iv_place_of_origin);
+        iv_lead_time = (ImageView) findViewById(R.id.iv_lead_time);
+        iv_extra_info = (ImageView) findViewById(R.id.iv_extra_info);
+
+
+        String size_txt = "";
+        if(item.getItem_width_height().contains(","))
+            size_txt += "WxH:" + item.getItem_width_height() + " Thickness: " +item.getItem_thickness_str();
+        else
+            size_txt += "(WxHxD) " + item.getItem_width_height() + "x" + item.getItem_thickness_str();
+        /*
         if(item.getItem_width()!=-1)
             size_txt += item.getItem_width_str()+"x";
         else
@@ -126,6 +145,8 @@ public class ItemDetail extends ActionBarActivity {
             size_txt += item.getItem_thickness_str();
         else
             size_txt += "N";
+        */
+
 
         String price_txt = "";
         if(item.getItem_price_min()!=-1)
@@ -140,21 +161,77 @@ public class ItemDetail extends ActionBarActivity {
         String color_txt = "-";
         if(!item.getItem_color().equals("null"))
             color_txt = item.getItem_color();
+        else{
+            iv_color.setVisibility(View.GONE);
+            tv_color.setVisibility(View.GONE);
+        }
+
 
         String finish_txt = "-";
         if(!item.getItem_finish().equals("null"))
             finish_txt = item.getItem_finish();
+        else{
+            iv_finish.setVisibility(View.GONE);
+            tv_finish.setVisibility(View.GONE);
+        }
 
+        if(item.getItem_place_of_origin().equals("null")){
+            iv_place_of_origin.setVisibility(View.GONE);
+            tv_place_of_origin.setVisibility(View.GONE);
+        }
+
+
+        if(item.getItem_lead_time().equals("-1"))
+            tv_lead_time.setText("Contact provider");
+        else{
+            int lead_time, weeks, days;
+
+            lead_time = Integer.parseInt(item.getItem_lead_time());
+            weeks = lead_time/7;
+            days = lead_time%7;
+
+            String final_str, week_str, day_str;
+
+            if(weeks==0)
+                week_str="";
+            else if(weeks==1)
+                week_str=weeks+" week ";
+            else
+                week_str=weeks+" weeks ";
+
+            if(days==0)
+                day_str="";
+            else if(days==1)
+                day_str=days+" day";
+            else
+                day_str=days+" days";
+
+            final_str = week_str+day_str;
+
+            tv_lead_time.setText(final_str);
+        }
+
+        if(item.getItem_extra_description().equals("null")){
+            iv_extra_info.setVisibility(View.GONE);
+            tv_extra_info.setVisibility(View.GONE);
+        }else{
+            tv_extra_info.setText(item.getItem_extra_description());
+        }
+
+
+        Log.i(TAG, "lead time: "+item.getItem_lead_time());
         tv_item_type.setText(getItemTypeText());
         tv_size.setText(size_txt);
         tv_price.setText(price_txt);
         tv_company.setText(itemProvider.getProvider_title());
         tv_color.setText(color_txt);
         tv_finish.setText(finish_txt);
-        Log.i(TAG, "tag: " + item.getItem_tags() + "||| finish: " + item.getItem_finish());
+        tv_place_of_origin.setText(item.getItem_place_of_origin());
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
 
@@ -302,7 +379,7 @@ public class ItemDetail extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent i = new Intent(this, MainActivity2Activity.class);
+                Intent i = new Intent(this, NavigateItemsActivity.class);
                 startActivity(i);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);

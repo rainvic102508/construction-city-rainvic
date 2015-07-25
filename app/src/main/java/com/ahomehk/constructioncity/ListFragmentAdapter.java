@@ -1,5 +1,6 @@
 package com.ahomehk.constructioncity;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -29,6 +30,8 @@ public class ListFragmentAdapter extends BaseAdapter implements StickyListHeader
     private String[] countries;
     ////
 
+
+
     private ArrayList<Item> items;
     private ArrayList<String> img_add = new ArrayList<>();
     private LayoutInflater inflater;
@@ -48,32 +51,6 @@ public class ListFragmentAdapter extends BaseAdapter implements StickyListHeader
         String type_sys = res.getStringArray(R.array.main_menu_list_sys)[data];
         String IMAGE_URL = res.getString(R.string.server_address)+res.getString(R.string.image_folder);
         String data_string = res.getStringArray(R.array.main_menu_list)[data].toLowerCase();
-       /* switch(data){
-            case 0:
-                items = new ArrayList<>(dbAdapter.getProducts());
-                for(int i=0; i<items.size(); i++){
-                    img_add.add(IMAGE_URL+"/products/"+items.get(i).getItem_img_file()+"/"+items.get(i).getItem_img_file()+"_0.jpg");
-                }
-                break;
-            case 1:
-                items = new ArrayList<>(dbAdapter.getServices());
-                for(int i=0; i<items.size(); i++){
-                    img_add.add(IMAGE_URL+"/services/"+items.get(i).getItem_img_file()+"/"+items.get(i).getItem_img_file()+"_0.jpg");
-                }
-                break;
-            case 2:
-                items = new ArrayList<>(dbAdapter.getJobReferences());
-                for(int i=0; i<items.size(); i++){
-                    img_add.add(IMAGE_URL+"/job_reference/"+items.get(i).getItem_img_file()+"/"+items.get(i).getItem_img_file()+"_0.jpg");
-                }
-                break;
-            case 3:
-                items = new ArrayList<>(dbAdapter.getNews());
-                for(int i=0; i<items.size(); i++){
-                    img_add.add(IMAGE_URL+"/news/"+items.get(i).getItem_img_file()+"/"+items.get(i).getItem_img_file()+"_0.jpg");
-                }
-                break;
-        }*/
 
         items = new ArrayList<>((dbAdapter.getItems(data_string)));
         for(int i=0; i<items.size(); i++){
@@ -85,7 +62,6 @@ public class ListFragmentAdapter extends BaseAdapter implements StickyListHeader
         }else{
             Log.e(TAG, "getImgSize() returns -1!!");
         }
-
 
     }
 

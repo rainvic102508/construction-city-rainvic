@@ -17,7 +17,16 @@
     <item name="main_menu_text_shadow" type="color">#e7171717</item>
     <item name="main_menu_icon_back" type="color">#55ffffff</item>
 
+    <item name="twt_item_background" type="color">#bbffffff</item>
+    <item name="twt_txt_shadow" type="color">#eeffffff</item>
+    <item name="twt_title_background" type="color">#00ffffff</item>
+    <item name="twt_title_txt_color" type="color">#aa000000</item>
     <!-- activity_main.xml -->
     <item name="ll_main_buttons_background" type="color">#ffffff</item>
+
+    <!-- custom progress -->
+    <item name="cp_start_color" type="color">#1190A4AE</item>
+    <item name="cp_center_color" type="color">#3390A4AE</item>
+    <item name="cp_end_color" type="color">#6690A4AE</item>
 
 </resources> 

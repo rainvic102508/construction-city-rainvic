@@ -17,6 +17,7 @@ public class Item extends ItemType implements Serializable{
     private String item_width;
     private String item_height;
     private String item_thickness;
+    private String item_width_height;
     private String item_img_file;
     private String item_title;
     private String item_created_at;
@@ -27,15 +28,18 @@ public class Item extends ItemType implements Serializable{
     private String item_finish;
     private String[] img_names;
     private String img_names_str;
+    private String item_place_of_origin;
+    private String item_lead_time;
 
     public Item() {
     }
 
     public Item(int _item_id, int _type_id, int _provider_id,
                 double item_price_min, double item_price_max, int item_width,
-                int item_height, int item_thickness, String item_img_file,
-                String item_title, String item_created_at,
-                String item_extra_description, String item_tags, String item_color, String item_finish) {
+                int item_height, int item_thickness, String item_width_height,
+                String item_img_file, String item_title, String item_created_at,
+                String item_extra_description, String item_tags, String item_color, String item_finish,
+                String place_of_origin, int lead_time) {
         this._item_id = Integer.toString(_item_id);
         this._type_id = Integer.toString(_type_id);
         this._provider_id = Integer.toString(_provider_id);
@@ -44,6 +48,7 @@ public class Item extends ItemType implements Serializable{
         this.item_width = Integer.toString(item_width);
         this.item_height = Integer.toString(item_height);
         this.item_thickness = Integer.toString(item_thickness);
+        this.item_width_height = item_width_height;
         this.item_img_file = item_img_file;
         this.item_title = item_title;
         this.item_created_at = item_created_at;
@@ -51,6 +56,8 @@ public class Item extends ItemType implements Serializable{
         this.item_tags = item_tags;
         this.item_color = item_color;
         this.item_finish = item_finish;
+        this.item_place_of_origin = place_of_origin;
+        this.item_lead_time = Integer.toString(lead_time);
 
 
         if(getType_main() != null){
@@ -61,9 +68,10 @@ public class Item extends ItemType implements Serializable{
 
     public Item(String _item_id, String _type_id, String _provider_id,
                 String item_price_min, String item_price_max, String item_width,
-                String item_height, String item_thickness, String item_img_file,
-                String item_title, String item_created_at,
-                String item_extra_description, String item_tags, String item_color, String item_finish) {
+                String item_height, String item_thickness, String item_width_height,
+                String item_img_file, String item_title, String item_created_at,
+                String item_extra_description, String item_tags, String item_color, String item_finish,
+                String place_of_origin, String lead_time) {
         this._item_id = _item_id;
         this._type_id = _type_id;
         this._provider_id = _provider_id;
@@ -72,6 +80,7 @@ public class Item extends ItemType implements Serializable{
         this.item_width = item_width;
         this.item_height = item_height;
         this.item_thickness = item_thickness;
+        this.item_width_height = item_width_height;
         this.item_img_file = item_img_file;
         this.item_title = item_title;
         this.item_created_at = item_created_at;
@@ -79,6 +88,8 @@ public class Item extends ItemType implements Serializable{
         this.item_tags = item_tags;
         this.item_color = item_color;
         this.item_finish = item_finish;
+        this.item_place_of_origin = place_of_origin;
+        this.item_lead_time = lead_time;
 
 
         if(getType_main() != null){
@@ -207,6 +218,13 @@ public class Item extends ItemType implements Serializable{
     }
 
 
+    public String getItem_width_height() {
+        return item_width_height;
+    }
+
+    public void setItem_width_height(String item_width_height) {
+        this.item_width_height = item_width_height;
+    }
 
     public String getItem_img_file() {
         return item_img_file;
@@ -297,5 +315,21 @@ public class Item extends ItemType implements Serializable{
     }
     public void setImg_names_str(String img_names_str) {
         this.img_names_str = img_names_str;
+    }
+
+    public String getItem_place_of_origin() {
+        return item_place_of_origin;
+    }
+
+    public String getItem_lead_time() {
+        return item_lead_time;
+    }
+
+    public void setItem_place_of_origin(String item_place_of_origin) {
+        this.item_place_of_origin = item_place_of_origin;
+    }
+
+    public void setItem_lead_time(String item_lead_time) {
+        this.item_lead_time = item_lead_time;
     }
 }

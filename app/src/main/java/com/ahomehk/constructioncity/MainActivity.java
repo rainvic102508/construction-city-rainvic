@@ -16,6 +16,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,13 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.io.Serializable;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -40,6 +48,19 @@ public class MainActivity extends ActionBarActivity {
      */
     private GridView gridView;
     private GVAdapter gvAdapter;
+
+    /**
+     * ListView(This week top)
+     */
+   // private ListView listView;
+   // private LVAdapter lvAdapter;
+
+    /**
+     * GridView(TWT)
+     *
+     */
+    private GridView twtGrid;
+    private TWTAdapter twtAdapter;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -84,6 +105,49 @@ public class MainActivity extends ActionBarActivity {
 
         initializeAds();
 
+        initializeThisWeekTop();
+
+
+    }
+
+    private void initializeThisWeekTop(){
+        twtGrid = (GridView) findViewById(R.id.gv_this_week_top);
+
+        //initialize DBAdapter
+        dBAdapter = new DBAdapter(this, null, null, 1);
+
+        Resources res = this.getResources();
+        String url = res.getString(R.string.server_address)+res.getString(R.string.get_this_week_top);
+        // Formulate the request and handle the response.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String[] arr = response.split(":");
+                        Log.i(TAG, "arr :"+response);
+                        //initialize list view adapter
+                        twtAdapter = new TWTAdapter(MainActivity.this, arr);
+                        twtGrid.setAdapter(twtAdapter);
+
+                        twtGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                                Intent intent = new Intent(MainActivity.this, ItemDetail.class);
+                                intent.putExtra(ItemDetail.EXTRA_TAG, (Serializable)twtAdapter.getItem(position));
+                                startActivity(intent);
+                                MainActivity.this.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            }
+                        });
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(MainActivity.this).addToRequestQueue(stringRequest);
 
     }
 
@@ -142,6 +206,9 @@ public class MainActivity extends ActionBarActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.getLayoutParams().height = mPagerHeight;
+        mPager.setPadding(screen_width/5, 0, screen_width/5, 0);
+        mPager.setClipToPadding(false);
+        mPager.setPageMargin(16);
 
         ads_next = (ImageView) findViewById(R.id.iv_ads_next);
         ads_prev = (ImageView) findViewById(R.id.iv_ads_prev);
@@ -189,15 +256,11 @@ public class MainActivity extends ActionBarActivity {
         gvAdapter = new GVAdapter(this);
         gridView.setAdapter(gvAdapter);
 
-        //initialize DBAdapter
-        dBAdapter = new DBAdapter(this, null, null, 1);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                DBAdapter dbAdapter = new DBAdapter(MainActivity.this);
-
-                Intent i = new Intent(MainActivity.this, MainActivity2Activity.class);
+                Intent i = new Intent(MainActivity.this, NavigateItemsActivity.class);
                 i.putExtra("WHICH_SECTION", position);
                 startActivity(i);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -264,15 +327,17 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int position) {
-            AdsFragment adsFragment = new AdsFragment();
-            adsFragment.setUrl(img_url+ads_src[position]);
-            return adsFragment;
+            ImageViewPager imageViewPager = new ImageViewPager();
+            imageViewPager.setUrl(img_url+ads_src[position]);
+            return imageViewPager;
         }
 
         @Override
         public int getCount() {
             return ads_src.length;
         }
+
+
     }
 
 

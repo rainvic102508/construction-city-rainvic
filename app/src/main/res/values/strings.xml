@@ -22,6 +22,8 @@
         <item>Latest Project</item>
         <item>Design</item>
         <item>News</item>
+        <item>Tool</item>
+        <item>Accessory</item>
     </string-array>
 
     <!-- Main menu list -->
@@ -32,11 +34,14 @@
         <item>latest_project</item>
         <item>design</item>
         <item>news</item>
+        <item>tool</item>
+        <item>accessory</item>
     </string-array>
 
 
 <!-- TODO: url for sync with server -->
     <string name="server_address">http://www.ahomehk.com</string>
+    <string name="get_this_week_top">/ahomehk/db/get_this_week_top.php</string>
     <string name="has_db_updated_address">/ahomehk/db/has_db_updated.php</string>
     <string name="get_image_names">/ahomehk/php/get_image_names.php</string>
     <string name="update_db_address">/ahomehk/db/update_db.php</string>
@@ -49,4 +54,5 @@
     <string name="count_num_of_ads">/ahomehk/php/count_ads.php</string>
     <string name="pager_test">New Text</string>
     <string name="splash_screen_title">CONSTRUCTION CITY</string>
+    <string name="twt_title_txt">THIS WEEK TOP</string>
 </resources>

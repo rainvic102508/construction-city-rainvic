@@ -62,6 +62,7 @@ public class DBAdapter extends SQLiteOpenHelper {
     public final static String COLUMN_ITEM_WIDTH = "item_width";
     public final static String COLUMN_ITEM_HEIGHT = "item_height";
     public final static String COLUMN_ITEM_THICKNESS = "item_thickness";
+    public final static String COLUMN_ITEM_WIDTH_HEIGHT = "item_width_height";
     public final static String COLUMN_ITEM_IMG_FILE = "item_img_file";
     public final static String COLUMN_ITEM_TITLE = "item_title";
     public final static String COLUMN_ITEM_CREATED_AT = "item_created_at";
@@ -70,6 +71,9 @@ public class DBAdapter extends SQLiteOpenHelper {
     public final static String COLUMN_ITEM_COLOR = "item_color";
     public final static String COLUMN_ITEM_FINISH = "item_finish";
     public final static String COLUMN_ITEM_IMG_NAMES = "item_img_names";
+    public final static String COLUMN_ITEM_PLACE_OF_ORIGIN = "item_place_of_origin";
+    public final static String COLUMN_ITEM_LEAD_TIME = "item_lead_time";
+
 
     // ITEM_TYPE table
     public final static String COLUMN_TYPE_MAIN = "type_main";
@@ -109,6 +113,7 @@ public class DBAdapter extends SQLiteOpenHelper {
             COLUMN_ITEM_WIDTH + " ," +
             COLUMN_ITEM_HEIGHT + " ," +
             COLUMN_ITEM_THICKNESS + " ," +
+            COLUMN_ITEM_WIDTH_HEIGHT + " ," +
             COLUMN_ITEM_IMG_FILE + " ," +
             COLUMN_ITEM_TITLE + " ," +
             COLUMN_ITEM_CREATED_AT + " ," +
@@ -116,7 +121,9 @@ public class DBAdapter extends SQLiteOpenHelper {
             COLUMN_ITEM_TAG + " ," +
             COLUMN_ITEM_COLOR + " ," +
             COLUMN_ITEM_FINISH + " ," +
-            COLUMN_ITEM_IMG_NAMES + " " +
+            COLUMN_ITEM_IMG_NAMES + " ," +
+            COLUMN_ITEM_PLACE_OF_ORIGIN + " ," +
+            COLUMN_ITEM_LEAD_TIME + " " +
             ");";
 
     private final static String CREATE_ITEM_TYPE_FTS_TABLE = "CREATE VIRTUAL TABLE " + FTS_TABLE_ITEM_TYPE + " USING fts4(" +
@@ -270,6 +277,7 @@ public class DBAdapter extends SQLiteOpenHelper {
             values.put(COLUMN_ITEM_WIDTH, items.get(i).getItem_width());
             values.put(COLUMN_ITEM_HEIGHT, items.get(i).getItem_height());
             values.put(COLUMN_ITEM_THICKNESS, items.get(i).getItem_thickness());
+            values.put(COLUMN_ITEM_WIDTH_HEIGHT, items.get(i).getItem_width_height());
             values.put(COLUMN_ITEM_IMG_FILE, items.get(i).getItem_img_file());
             values.put(COLUMN_ITEM_TITLE, items.get(i).getItem_title());
             values.put(COLUMN_ITEM_CREATED_AT, items.get(i).getItem_created_at());
@@ -278,6 +286,8 @@ public class DBAdapter extends SQLiteOpenHelper {
             values.put(COLUMN_ITEM_COLOR, items.get(i).getItem_color());
             values.put(COLUMN_ITEM_FINISH, items.get(i).getItem_finish());
             values.put(COLUMN_ITEM_IMG_NAMES, items.get(i).getImg_names_str());
+            values.put(COLUMN_ITEM_PLACE_OF_ORIGIN, items.get(i).getItem_place_of_origin());
+            values.put(COLUMN_ITEM_LEAD_TIME, items.get(i).getItem_lead_time());
             Log.i(TAG, "img_names: "+items.get(i).getImg_names_str());
 
 
@@ -349,10 +359,11 @@ public class DBAdapter extends SQLiteOpenHelper {
             Item product = new Item(
                     c.getString(c.getColumnIndex(COLUMN_ITEM_ID)), c.getString(c.getColumnIndex(COLUMN_TYPE_ID)), c.getString(c.getColumnIndex(COLUMN_PROVIDER_ID)),
                     c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MIN)), c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MAX)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH)),
-                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), img_file,
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH_HEIGHT)), img_file,
                     c.getString(c.getColumnIndex(COLUMN_ITEM_TITLE)), c.getString(c.getColumnIndex(COLUMN_ITEM_CREATED_AT)), c.getString(c.getColumnIndex(COLUMN_ITEM_EXTRA_DESCRIPTION)),
                     c.getString(c.getColumnIndex(COLUMN_ITEM_TAG)), c.getString(c.getColumnIndex(COLUMN_ITEM_COLOR)),
-                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH))
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH)), c.getString(c.getColumnIndex(COLUMN_ITEM_PLACE_OF_ORIGIN)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_LEAD_TIME))
             );
             product.setType_main(c.getString(c.getColumnIndex(COLUMN_TYPE_MAIN)));
             product.setType_one(c.getString(c.getColumnIndex(COLUMN_TYPE_ONE)));
@@ -397,10 +408,11 @@ public class DBAdapter extends SQLiteOpenHelper {
             Item product = new Item(
                     c.getString(c.getColumnIndex(COLUMN_ITEM_ID)), c.getString(c.getColumnIndex(COLUMN_TYPE_ID)), c.getString(c.getColumnIndex(COLUMN_PROVIDER_ID)),
                     c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MIN)), c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MAX)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH)),
-                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), img_file,
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH_HEIGHT)), img_file,
                     c.getString(c.getColumnIndex(COLUMN_ITEM_TITLE)), c.getString(c.getColumnIndex(COLUMN_ITEM_CREATED_AT)), c.getString(c.getColumnIndex(COLUMN_ITEM_EXTRA_DESCRIPTION)),
                     c.getString(c.getColumnIndex(COLUMN_ITEM_TAG)), c.getString(c.getColumnIndex(COLUMN_ITEM_COLOR)),
-                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH))
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH)), c.getString(c.getColumnIndex(COLUMN_ITEM_PLACE_OF_ORIGIN)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_LEAD_TIME))
             );
             product.setType_main(c.getString(c.getColumnIndex(COLUMN_TYPE_MAIN)));
             product.setType_one(c.getString(c.getColumnIndex(COLUMN_TYPE_ONE)));
@@ -423,6 +435,63 @@ public class DBAdapter extends SQLiteOpenHelper {
         return productArr;
     }
 
+
+    /**
+     * Get this week top list from the server and populate into the listview adapter
+     * @return items of array list of the this week top
+     */
+    public ArrayList getThisWeekTop(String[] items_id){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<Item> arr = new ArrayList<>();
+
+        String sql = "SELECT "+ FTS_TABLE_ITEM +".*, "+ FTS_TABLE_ITEM_TYPE +".*" +
+                " FROM " + FTS_TABLE_ITEM_TYPE +
+                " JOIN " + FTS_TABLE_ITEM +
+                " ON " + FTS_TABLE_ITEM + "." + COLUMN_TYPE_ID + "=" + FTS_TABLE_ITEM_TYPE + "." + COLUMN_TYPE_ID +
+                " WHERE ";
+        for(int i=0; i<items_id.length; i++){
+            sql += FTS_TABLE_ITEM + "." + COLUMN_ITEM_ID + "=" + items_id[i] + " ";
+            if(i<items_id.length-1){
+                sql += "OR ";
+            }
+        }
+
+        //cursor point to a location in your result
+        Cursor c = db.rawQuery(sql, null);
+
+        //move cursor to first
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            String img_file = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_FILE));
+            Item product = new Item(
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_ID)), c.getString(c.getColumnIndex(COLUMN_TYPE_ID)), c.getString(c.getColumnIndex(COLUMN_PROVIDER_ID)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MIN)), c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MAX)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH_HEIGHT)), img_file,
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TITLE)), c.getString(c.getColumnIndex(COLUMN_ITEM_CREATED_AT)), c.getString(c.getColumnIndex(COLUMN_ITEM_EXTRA_DESCRIPTION)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TAG)), c.getString(c.getColumnIndex(COLUMN_ITEM_COLOR)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH)), c.getString(c.getColumnIndex(COLUMN_ITEM_PLACE_OF_ORIGIN)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_LEAD_TIME))
+            );
+            product.setType_main(c.getString(c.getColumnIndex(COLUMN_TYPE_MAIN)));
+            product.setType_one(c.getString(c.getColumnIndex(COLUMN_TYPE_ONE)));
+            product.setType_two(c.getString(c.getColumnIndex(COLUMN_TYPE_TWO)));
+            product.setType_three(c.getString(c.getColumnIndex(COLUMN_TYPE_THREE)));
+            product.setType_four(c.getString(c.getColumnIndex(COLUMN_TYPE_FOUR)));
+            product.setType_five(c.getString(c.getColumnIndex(COLUMN_TYPE_FIVE)));
+            product.setType_extra(c.getString(c.getColumnIndex(COLUMN_TYPE_EXTRA)));
+            product.setType_created_at(c.getString(c.getColumnIndex(COLUMN_TYPE_CREATED_AT)));
+            product.setImg_add();
+            String img_names = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_NAMES));
+            product.setImg_names(img_names);
+            arr.add(product);
+            c.moveToNext();
+            // Log.i(TAG, "Item img names: " + img_names + " BY img file: " + img_file);
+        }
+
+        db.close();
+        return arr;
+    }
 
     /**
      * Check whether the table needs to be updated or not.

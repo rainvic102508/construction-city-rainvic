@@ -46,7 +46,7 @@
                 android:value=".SearchableActivity" />
         </activity>
         <activity
-            android:name=".MainActivity2Activity"
+            android:name=".NavigateItemsActivity"
             android:label="@string/title_activity_main_activity2"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithoutLogo">

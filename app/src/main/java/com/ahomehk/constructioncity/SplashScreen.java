@@ -46,8 +46,7 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-
+ArrayList<Integer> tryit = new ArrayList<>();
         res = getResources();
 
         new Handler().postDelayed(new Runnable() {
@@ -210,16 +209,19 @@ public class SplashScreen extends Activity {
                                         jsonObject.getInt(DBAdapter.COLUMN_ITEM_WIDTH),
                                         jsonObject.getInt(DBAdapter.COLUMN_ITEM_HEIGHT),
                                         jsonObject.getInt(DBAdapter.COLUMN_ITEM_THICKNESS),
+                                        jsonObject.getString(DBAdapter.COLUMN_ITEM_WIDTH_HEIGHT),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_IMG_FILE),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_TITLE),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_CREATED_AT),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_EXTRA_DESCRIPTION),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_TAG),
                                         jsonObject.getString(DBAdapter.COLUMN_ITEM_COLOR),
-                                        jsonObject.getString(DBAdapter.COLUMN_ITEM_FINISH)
+                                        jsonObject.getString(DBAdapter.COLUMN_ITEM_FINISH),
+                                        jsonObject.getString(DBAdapter.COLUMN_ITEM_PLACE_OF_ORIGIN),
+                                        jsonObject.getInt(DBAdapter.COLUMN_ITEM_LEAD_TIME)
                                         );
                                 item.setImg_names(jsonObject.getString(DBAdapter.COLUMN_ITEM_IMG_NAMES));
-                                Log.i(TAG, "finish: "+jsonObject.getString(DBAdapter.COLUMN_ITEM_FINISH));
+                                Log.i(TAG, "extra: "+jsonObject.getString(DBAdapter.COLUMN_ITEM_EXTRA_DESCRIPTION));
                                 items.add(item);
                             }catch(JSONException e){
                                 Log.e(TAG, "updateItemTable() : while populate the object-"+e.toString());
