@@ -23,7 +23,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 /**
  * Created by rainvic on 20/5/15.
  */
-public class ListFragmentAdapter extends BaseAdapter implements StickyListHeadersAdapter {
+public class ItemsListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
     public static final String TAG = "ListFragmentAdapter";
     ///
@@ -41,7 +41,7 @@ public class ListFragmentAdapter extends BaseAdapter implements StickyListHeader
     private Resources res;
     private ImageLoader mImageLoader;
 
-    public ListFragmentAdapter(Context context, int data) {
+    public ItemsListAdapter(Context context, int data) {
         //initializing
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);

@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     /**Gridview(main menu icon)
      */
     private GridView gridView;
-    private GVAdapter gvAdapter;
+    private MainMenuAdapter mainMenuAdapter;
 
     /**
      * ListView(This week top)
@@ -253,8 +253,8 @@ public class MainActivity extends ActionBarActivity {
 
 
         gridView = (GridView) findViewById(R.id.gvButtons);
-        gvAdapter = new GVAdapter(this);
-        gridView.setAdapter(gvAdapter);
+        mainMenuAdapter = new MainMenuAdapter(this);
+        gridView.setAdapter(mainMenuAdapter);
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

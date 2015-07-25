@@ -162,7 +162,7 @@ public class NavigateItemsActivity extends ActionBarActivity{
             final int data = args.getInt(ARG_OBJECT);
 
             StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.lv_fragment);
-            final ListFragmentAdapter adapter = new ListFragmentAdapter(getActivity(), data);
+            final ItemsListAdapter adapter = new ItemsListAdapter(getActivity(), data);
             stickyList.setAdapter(adapter);
 
             stickyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

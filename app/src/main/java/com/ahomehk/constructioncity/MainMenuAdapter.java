@@ -12,12 +12,12 @@ import android.widget.TextView;
 /**
  * Created by rainvic on 27/4/15.
  */
-public class GVAdapter extends BaseAdapter {
+public class MainMenuAdapter extends BaseAdapter {
 
     Context mContext;
     String[] menuTitles;
 
-    public GVAdapter(Context c){
+    public MainMenuAdapter(Context c){
         this.mContext = c;
         Resources res = mContext.getResources();
         menuTitles = res.getStringArray(R.array.main_menu_list);
