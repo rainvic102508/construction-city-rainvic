@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.ahomehk.constructioncity.items.Item;
 import com.ahomehk.constructioncity.items.ItemType;
+import com.ahomehk.constructioncity.items.ProductType;
 import com.ahomehk.constructioncity.items.Provider;
 import com.ahomehk.constructioncity.items.TableInfo;
 
@@ -378,12 +379,79 @@ public class DBAdapter extends SQLiteOpenHelper {
             product.setImg_names(img_names);
             productArr.add(product);
             c.moveToNext();
-            //  Log.i(TAG, "Item img names: " + img_names + " BY img file: " + img_file);
         }
         db.close();
         return productArr;
     }
 
+    /**
+     * Fetch Product items for a specific type
+     */
+
+    public ArrayList<Item> getProductsForAType(String type) {
+        String[] types = type.split(" >> ");
+
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT "+ FTS_TABLE_ITEM +".*, "+ FTS_TABLE_ITEM_TYPE +".*" +
+                " FROM " + FTS_TABLE_ITEM_TYPE +
+                " JOIN " + FTS_TABLE_ITEM +
+                " ON " + FTS_TABLE_ITEM + "." + COLUMN_TYPE_ID + "=" + FTS_TABLE_ITEM_TYPE + "." + COLUMN_TYPE_ID +
+                " WHERE " + FTS_TABLE_ITEM_TYPE + " MATCH \'" + COLUMN_TYPE_TWO +":" + types[0];
+
+        if(types.length > 1){
+            sql += " " + COLUMN_TYPE_THREE + ":"+types[1];
+            if(types.length > 2){
+                sql += " " + COLUMN_TYPE_FOUR + ":"+types[2];
+                if(types.length > 3){
+                    sql += " " + COLUMN_TYPE_FIVE + ":"+types[3]+"\';";
+                }else{
+                    sql += "\';";
+                }
+            }else{
+                sql += "\';";
+            }
+        }else{
+            sql += "\';";
+        }
+
+        Log.i(TAG, "sql cmd :"+sql);
+
+        ArrayList<Item> productArr = new ArrayList<>();
+
+        //cursor point to a location in your result
+        Cursor c = db.rawQuery(sql, null);
+
+        //move cursor to first
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            String img_file = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_FILE));
+            Item product = new Item(
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_ID)), c.getString(c.getColumnIndex(COLUMN_TYPE_ID)), c.getString(c.getColumnIndex(COLUMN_PROVIDER_ID)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MIN)), c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MAX)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH_HEIGHT)), img_file,
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TITLE)), c.getString(c.getColumnIndex(COLUMN_ITEM_CREATED_AT)), c.getString(c.getColumnIndex(COLUMN_ITEM_EXTRA_DESCRIPTION)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TAG)), c.getString(c.getColumnIndex(COLUMN_ITEM_COLOR)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH)), c.getString(c.getColumnIndex(COLUMN_ITEM_PLACE_OF_ORIGIN)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_LEAD_TIME))
+            );
+            product.setType_main(c.getString(c.getColumnIndex(COLUMN_TYPE_MAIN)));
+            product.setType_one(c.getString(c.getColumnIndex(COLUMN_TYPE_ONE)));
+            product.setType_two(c.getString(c.getColumnIndex(COLUMN_TYPE_TWO)));
+            product.setType_three(c.getString(c.getColumnIndex(COLUMN_TYPE_THREE)));
+            product.setType_four(c.getString(c.getColumnIndex(COLUMN_TYPE_FOUR)));
+            product.setType_five(c.getString(c.getColumnIndex(COLUMN_TYPE_FIVE)));
+            product.setType_extra(c.getString(c.getColumnIndex(COLUMN_TYPE_EXTRA)));
+            product.setType_created_at(c.getString(c.getColumnIndex(COLUMN_TYPE_CREATED_AT)));
+            product.setImg_add();
+            String img_names = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_NAMES));
+            product.setImg_names(img_names);
+            productArr.add(product);
+            c.moveToNext();
+        }
+        db.close();
+        return productArr;
+    }
 
     /**
      * Get Product view
@@ -492,6 +560,92 @@ public class DBAdapter extends SQLiteOpenHelper {
         db.close();
         return arr;
     }
+
+    /**
+     * Fetch product types according to ProductType class
+     * @return ArrayList<ProductType>
+     */
+    public ArrayList<ProductType> getProductTypes(){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<ProductType> arr = new ArrayList<>();
+
+        Log.i(TAG, "run getProductTypes()");
+
+        String sql = "SELECT "+ FTS_TABLE_ITEM_TYPE +".*" +
+                " FROM " + FTS_TABLE_ITEM_TYPE +
+                " WHERE " + COLUMN_TYPE_MAIN + " MATCH \'" + PRODUCT + "\';";
+
+        //cursor point to a location in your result
+        Cursor c = db.rawQuery(sql, null);
+
+        //move cursor to first
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            boolean ttl_found = false;
+            String type_one = c.getString(c.getColumnIndex(COLUMN_TYPE_ONE));
+            String type_two = c.getString(c.getColumnIndex(COLUMN_TYPE_TWO));
+            String type_three = c.getString(c.getColumnIndex(COLUMN_TYPE_THREE));
+            String type_four = c.getString(c.getColumnIndex(COLUMN_TYPE_FOUR));
+            String type_five = c.getString(c.getColumnIndex(COLUMN_TYPE_FIVE));
+
+            if(!type_three.equals("null")){
+                type_two += " >> "+type_three;
+                if(!type_four.equals("null")) {
+                    type_two += " >> " + type_four;
+                    if (!type_five.equals("null")) {
+                        type_two += " >> " + type_five;
+                    }
+                }
+            }
+
+            Log.i(TAG, "type_one: "+type_one+",  type_two: "+type_two);
+            if(arr.size()<=0){
+                ProductType productType = new ProductType();
+                productType.setType(type_one);
+                Log.i(TAG, "add type_one: " + type_one);
+                if(type_two.equals("null")){
+                    productType.addItme(type_one);
+                }else {
+                    productType.addItme(type_two);
+                }
+                Log.i(TAG, "add type_two: " + type_two);
+
+                arr.add(productType);
+            }
+            else
+            {
+                for (int i = 0; i < arr.size(); i++) {
+                    if (arr.get(i).getType().equals(type_one)) {
+                        arr.get(i).addItme(type_two);
+                        Log.i(TAG, "add type_two: " + type_two);
+                        ttl_found = true;
+                        break;
+                    } else if (!ttl_found && i == (arr.size() - 1)) {
+                        ProductType productType = new ProductType();
+                        productType.setType(type_one);
+                        Log.i(TAG, "add type_one: " + type_one);
+                        if(type_two.equals("null")){
+                            productType.addItme(type_one);
+                        }else {
+                            productType.addItme(type_two);
+                        }
+                        Log.i(TAG, "add type_two: " + type_two);
+
+                        arr.add(productType);
+                        break;
+                    }
+                }
+            }
+
+            c.moveToNext();
+        }
+
+        db.close();
+        return arr;
+
+    }
+
 
     /**
      * Check whether the table needs to be updated or not.

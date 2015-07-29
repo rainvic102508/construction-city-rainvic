@@ -55,4 +55,6 @@
     <string name="pager_test">New Text</string>
     <string name="splash_screen_title">CONSTRUCTION CITY</string>
     <string name="twt_title_txt">THIS WEEK TOP</string>
+    <string name="title_activity_product_list">ProductListActivity</string>
+    <string name="title_activity_dummy">Dummy</string>
 </resources>

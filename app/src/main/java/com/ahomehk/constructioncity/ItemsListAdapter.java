@@ -3,7 +3,6 @@ package com.ahomehk.constructioncity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,37 +24,24 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
  */
 public class ItemsListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
-    public static final String TAG = "ListFragmentAdapter";
-    ///
-    private String[] countries;
-    ////
+    public static final String TAG = "ItemsListAdapter";
 
 
 
     private ArrayList<Item> items;
-    private ArrayList<String> img_add = new ArrayList<>();
+    private ArrayList<String> img_add;
     private LayoutInflater inflater;
     private Context mContext;
-    private int data;
     private int img_size;
-    private Resources res;
     private ImageLoader mImageLoader;
 
-    public ItemsListAdapter(Context context, int data) {
+    public ItemsListAdapter(Context context, ArrayList<Item> items, ArrayList<String> img_add) {
         //initializing
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);
-        DBAdapter dbAdapter = new DBAdapter(mContext);
-        this.data = data;
-        res = mContext.getResources();
-        String type_sys = res.getStringArray(R.array.main_menu_list_sys)[data];
-        String IMAGE_URL = res.getString(R.string.server_address)+res.getString(R.string.image_folder);
-        String data_string = res.getStringArray(R.array.main_menu_list)[data].toLowerCase();
 
-        items = new ArrayList<>((dbAdapter.getItems(data_string)));
-        for(int i=0; i<items.size(); i++){
-            img_add.add(IMAGE_URL+"/"+items.get(i).getItem_img_file()+"/"+items.get(i).getImg_names()[0]);
-        }
+        this.items = items;
+        this.img_add = img_add;
 
         if(getImgSize()!=-1){
             img_size = getImgSize()/4;

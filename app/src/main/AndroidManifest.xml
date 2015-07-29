@@ -12,14 +12,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".SearchableActivity"
-            android:screenOrientation="portrait"
             android:label="@string/search_result"
-            android:theme="@style/AppThemeWithoutLogo">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeWithoutLogo" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".SplashScreen"
@@ -41,6 +43,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
@@ -49,12 +52,13 @@
             android:name=".NavigateItemsActivity"
             android:label="@string/title_activity_main_activity2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeWithoutLogo">
+            android:theme="@style/AppThemeWithoutLogo" >
             <intent-filter>
                 <action android:name="com.ahomehk.constructioncity.MAINACTIVITY2ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
@@ -63,15 +67,20 @@
             android:name=".ItemDetail"
             android:label="@string/title_activity_item_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeWithoutLogo">
+            android:theme="@style/AppThemeWithoutLogo" >
             <intent-filter>
                 <action android:name="com.ahomehk.constructioncity.ITEMDETAIL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
+        </activity>
+        <activity
+            android:name=".ProductListActivity"
+            android:label="@string/title_activity_product_list" >
         </activity>
     </application>
 

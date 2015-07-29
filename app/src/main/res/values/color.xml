@@ -21,6 +21,9 @@
     <item name="twt_txt_shadow" type="color">#eeffffff</item>
     <item name="twt_title_background" type="color">#00ffffff</item>
     <item name="twt_title_txt_color" type="color">#aa000000</item>
+
+    <item name="tv_types_grid_section_back" type="color">#BDBDBD</item>
+
     <!-- activity_main.xml -->
     <item name="ll_main_buttons_background" type="color">#ffffff</item>
 

@@ -1,109 +1,106 @@
 package com.ahomehk.constructioncity;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ahomehk.constructioncity.items.ProductType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TypesGridFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
  * Use the {@link TypesGridFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TypesGridFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String ARG_TYPES_GRID = "types_grid";
 
-    private OnFragmentInteractionListener mListener;
+    ArrayList<ProductType> arr;
+    ArrayList<String> sectionstrset = new ArrayList<>();
+    ArrayList<String> types = new ArrayList<>();
+
+    private RecyclerView rv_types;
+    private RecyclerView.Adapter rvTypesAdapter;
+    private RecyclerView.LayoutManager rvTypesLayoutManager;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     *
      * @return A new instance of fragment TypesGridFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TypesGridFragment newInstance(String param1, String param2) {
+    public static TypesGridFragment newInstance() {
         TypesGridFragment fragment = new TypesGridFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     public TypesGridFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        DBAdapter dbAdapter = new DBAdapter(getActivity());
+        arr = dbAdapter.getProductTypes();
+        for(ProductType productType : arr){
+            sectionstrset.add(productType.getType());
+            for(String type : productType.getItems()){
+                types.add(type);
+            }
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_types_grid, container, false);
-    }
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_types_grid, container, false);
+        rv_types = (RecyclerView) rootView.findViewById(R.id.rv_types);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        rv_types.setHasFixedSize(true);
+
+        // use a linear layout manager
+        rvTypesLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
+        rv_types.setLayoutManager(rvTypesLayoutManager);
+
+        // specify an adapter (see also next example)
+        rvTypesAdapter = new TypesGridAdapter(types);
+
+        //This is the code to provide a sectioned grid
+        List<SectionedGridRecyclerViewAdapter.Section> sections =
+                new ArrayList<SectionedGridRecyclerViewAdapter.Section>();
+
+        //Sections
+        for(int i=0; i<arr.size(); i++){
+            int offset =0;
+            for(int j=0; j<i; j++){
+                offset += arr.get(j).getItems().size();
+            }
+            sections.add(new SectionedGridRecyclerViewAdapter.Section(offset,sectionstrset.get(i)));
         }
+
+        //Add your adapter to the sectionAdapter
+        SectionedGridRecyclerViewAdapter.Section[] dummy = new SectionedGridRecyclerViewAdapter.Section[sections.size()];
+        SectionedGridRecyclerViewAdapter mSectionedAdapter = new
+                SectionedGridRecyclerViewAdapter(getActivity(),R.layout.tv_types_grid_section,R.id.tv_txt_types_grid_section,rv_types,rvTypesAdapter);
+        mSectionedAdapter.setSections(sections.toArray(dummy));
+
+        rv_types.setAdapter(mSectionedAdapter);
+
+        return rootView;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
 
 }

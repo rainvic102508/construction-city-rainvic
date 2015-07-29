@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TextView as a section header. -->
+<!-- Add android:textDirection="locale" to support RTL languages. -->
+<TextView
+    android:id="@+id/tv_types_grid_section_title"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textDirection="locale"
+    app:slm_headerDisplay="start|sticky"
+    app:slm_isHeader="true"
+    app:slm_section_headerMarginStart="56dip"
+    tools:text="Header Item"
+    />

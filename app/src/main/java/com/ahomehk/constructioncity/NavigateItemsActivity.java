@@ -13,19 +13,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
 public class NavigateItemsActivity extends ActionBarActivity{
 
-    public static final String TAG = "MAINACTIVITY2ACTIVITY";
+    public static final String TAG = "NavigateItemsActivity";
 
     // When requested, this adapter returns a DemoObjectFragment,
     // representing an object in the collection.
@@ -117,15 +112,74 @@ public class NavigateItemsActivity extends ActionBarActivity{
             super(fm);
         }
 
+
         @Override
         public Fragment getItem(int i) {
-            Fragment fragment = new ListViewFragment();
-            Bundle args = new Bundle();
-            // Our object is just an integer :-P
-            args.putInt(ListViewFragment.ARG_OBJECT, i);
-            fragment.setArguments(args);
+            switch (i) {
+                case 0:
+                    /*
+                    ArrayList<String> arr = new ArrayList<>();
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                    arr.add("haha");
+                    arr.add("try");
+                    arr.add("great");
+                    arr.add("awesome");
+                    arr.add("crazy");
+                     */
+                    return TypesGridFragment.newInstance();
+                    //Fragment testfragment = ListViewFragment.newInstance(i);
+                    /*
+                    Bundle testargs = new Bundle();
+                    // Our object is just an integer :-P
+                    testargs.putInt(ListViewFragment.ARG_ITEMS, i);
+                    testfragment.setArguments(testargs);
+                    */
+                    //return testfragment;
+                default:
+                    Fragment fragment = ListViewFragment.newInstance(i);
+                    /*
+                    Bundle args = new Bundle();
+                    // Our object is just an integer :-P
+                    args.putInt(ListViewFragment.ARG_ITEMS, i);
+                    fragment.setArguments(args);
+                    */
+                    return fragment;
+            }
 
-            return fragment;
         }
 
         @Override
@@ -141,41 +195,6 @@ public class NavigateItemsActivity extends ActionBarActivity{
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             return super.instantiateItem(container, position);
-        }
-    }
-
-
-
-    // Instances of this class are fragments representing a single
-// object in our collection.
-    public static class ListViewFragment extends Fragment {
-        public static final String ARG_OBJECT = "object";
-
-        @Override
-        public View onCreateView(LayoutInflater inflater,
-                                 ViewGroup container, Bundle savedInstanceState) {
-            // The last two arguments ensure LayoutParams are inflated
-            // properly.
-            View rootView = inflater.inflate(
-                    R.layout.fragment_listview, container, false);
-            Bundle args = getArguments();
-            final int data = args.getInt(ARG_OBJECT);
-
-            StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.lv_fragment);
-            final ItemsListAdapter adapter = new ItemsListAdapter(getActivity(), data);
-            stickyList.setAdapter(adapter);
-
-            stickyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Intent i = new Intent(getActivity(), ItemDetail.class);
-                    i.putExtra(ItemDetail.EXTRA_TAG, adapter.getItem(position));
-                    startActivity(i);
-                    getActivity().overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                }
-            });
-
-            return rootView;
         }
     }
 }
