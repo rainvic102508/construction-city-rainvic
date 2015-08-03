@@ -61,7 +61,8 @@
                 android:id="@+id/tv_title_price"
                 android:layout_below="@+id/tv_item_type"
                 android:text="@string/price_title"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="30dp"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -73,7 +74,8 @@
                 android:layout_below="@+id/tv_item_type"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
 
 
@@ -82,7 +84,8 @@
                 android:id="@+id/tv_title_size"
                 android:layout_below="@+id/tv_title_price"
                 android:layout_marginTop="12dp"
-                android:text="@string/size_title"/>
+                android:text="@string/size_title"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -95,7 +98,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
 
             <TextView
@@ -103,7 +107,8 @@
                 android:id="@+id/tv_title_company"
                 android:layout_below="@+id/tv_title_size"
                 android:text="@string/comp_title"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="12dp"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -116,7 +121,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
 
             <TextView
@@ -124,7 +130,8 @@
                 android:id="@+id/tv_title_color"
                 android:layout_below="@+id/tv_title_company"
                 android:layout_marginTop="12dp"
-                android:text="@string/color_title"/>
+                android:text="@string/color_title"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -137,14 +144,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_finishing"
                 android:layout_below="@+id/tv_title_color"
                 android:text="@string/finishing_title"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="12dp"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -157,14 +166,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_place_of_origin"
                 android:layout_below="@+id/tv_title_finishing"
                 android:layout_marginTop="12dp"
-                android:text="@string/origin_title"/>
+                android:text="@string/origin_title"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -177,14 +188,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_lead_time"
                 android:text="@string/leadtime_title"
                 android:layout_below="@+id/tv_title_place_of_origin"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="12dp"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -197,7 +210,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
 
             <TextView
@@ -205,7 +219,8 @@
                 android:id="@+id/tv_title_extra_info"
                 android:layout_below="@+id/tv_title_lead_time"
                 android:text="@string/remark_title"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="12dp"
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -218,7 +233,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp" />
 
 
 
