@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_main">Construction city</string>
+    <string name="title_activity_main">Constructioncity</string>
     <string name="title_activity_item_details">ItemDetails</string>
     <string name="title_activity_main_activity2">Select an item for details</string>
     <string name="search_title">Search</string>
@@ -57,4 +57,14 @@
     <string name="twt_title_txt">THIS WEEK TOP</string>
     <string name="title_activity_product_list">ProductListActivity</string>
     <string name="title_activity_dummy">Dummy</string>
+
+    <!-- item detail view titles -->
+    <string name="price_title">Price</string>
+    <string name="size_title">Size</string>
+    <string name="comp_title">Comp.</string>
+    <string name="color_title">Color</string>
+    <string name="finishing_title">Finishing</string>
+    <string name="origin_title">Origin</string>
+    <string name="leadtime_title">Lead time</string>
+    <string name="remark_title">Remark</string>
 </resources>

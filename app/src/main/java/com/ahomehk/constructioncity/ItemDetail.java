@@ -81,7 +81,7 @@ public class ItemDetail extends ActionBarActivity {
     /**
      * Item details display
      */
-    private ImageView iv_price, iv_size, iv_company, iv_color, iv_finish, iv_place_of_origin, iv_lead_time, iv_extra_info;
+    private TextView tv_title_price, tv_title_size, tv_title_company, tv_title_color, tv_title_finish, tv_title_place_of_origin, tv_title_lead_time, tv_title_extra_info;
     private TextView tv_item_type, tv_price, tv_size, tv_company, tv_color, tv_finish, tv_place_of_origin, tv_lead_time, tv_extra_info;
 
 
@@ -117,14 +117,14 @@ public class ItemDetail extends ActionBarActivity {
         tv_lead_time = (TextView) findViewById(R.id.tv_lead_time);
         tv_extra_info = (TextView) findViewById(R.id.tv_extra_info);
 
-        iv_size = (ImageView) findViewById(R.id.iv_size);
-        iv_price = (ImageView) findViewById(R.id.iv_price);
-        iv_company = (ImageView) findViewById(R.id.iv_company);
-        iv_color = (ImageView) findViewById(R.id.iv_color);
-        iv_finish = (ImageView) findViewById(R.id.iv_finishing);
-        iv_place_of_origin = (ImageView) findViewById(R.id.iv_place_of_origin);
-        iv_lead_time = (ImageView) findViewById(R.id.iv_lead_time);
-        iv_extra_info = (ImageView) findViewById(R.id.iv_extra_info);
+        tv_title_size = (TextView) findViewById(R.id.tv_title_size);
+        tv_title_price = (TextView) findViewById(R.id.tv_title_price);
+        tv_title_company = (TextView) findViewById(R.id.tv_title_company);
+        tv_title_color = (TextView) findViewById(R.id.tv_title_color);
+        tv_title_finish = (TextView) findViewById(R.id.tv_title_finishing);
+        tv_title_place_of_origin = (TextView) findViewById(R.id.tv_title_place_of_origin);
+        tv_title_lead_time = (TextView) findViewById(R.id.tv_title_lead_time);
+        tv_title_extra_info = (TextView) findViewById(R.id.tv_title_extra_info);
 
 
         String size_txt = "";
@@ -162,7 +162,7 @@ public class ItemDetail extends ActionBarActivity {
         if(!item.getItem_color().equals("null"))
             color_txt = item.getItem_color();
         else{
-            iv_color.setVisibility(View.GONE);
+            tv_title_color.setVisibility(View.GONE);
             tv_color.setVisibility(View.GONE);
         }
 
@@ -171,12 +171,12 @@ public class ItemDetail extends ActionBarActivity {
         if(!item.getItem_finish().equals("null"))
             finish_txt = item.getItem_finish();
         else{
-            iv_finish.setVisibility(View.GONE);
+            tv_title_finish.setVisibility(View.GONE);
             tv_finish.setVisibility(View.GONE);
         }
 
         if(item.getItem_place_of_origin().equals("null")){
-            iv_place_of_origin.setVisibility(View.GONE);
+            tv_title_place_of_origin.setVisibility(View.GONE);
             tv_place_of_origin.setVisibility(View.GONE);
         }
 
@@ -212,7 +212,7 @@ public class ItemDetail extends ActionBarActivity {
         }
 
         if(item.getItem_extra_description().equals("null")){
-            iv_extra_info.setVisibility(View.GONE);
+            tv_title_extra_info.setVisibility(View.GONE);
             tv_extra_info.setVisibility(View.GONE);
         }else{
             tv_extra_info.setText(item.getItem_extra_description());
@@ -228,6 +228,11 @@ public class ItemDetail extends ActionBarActivity {
         tv_finish.setText(finish_txt);
         tv_place_of_origin.setText(item.getItem_place_of_origin());
 
+        /**
+         * Client does not want to show provider at the moment
+         */
+        tv_company.setVisibility(View.GONE);
+        tv_title_company.setVisibility(View.GONE );
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -250,8 +255,8 @@ public class ItemDetail extends ActionBarActivity {
                             result += " > " + item.getType_five();
                             if(!item.getType_extra().equals("null")) {
                                 String[] extra = item.getType_extra().split(",");
-                                for(int i=0; i<extra.length; i++){
-                                    result += ">>" + extra[i];
+                                for(String extra_type:extra){
+                                    result += ">>" + extra_type;
                                 }
                             }
                         }

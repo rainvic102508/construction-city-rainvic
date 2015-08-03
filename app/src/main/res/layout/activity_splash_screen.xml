@@ -7,8 +7,8 @@
     android:background="#ffffff">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:id="@+id/imageView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -17,12 +17,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/splash_screen_title"
-        android:id="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Construction"
         android:textColor="@color/splash_text"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"
-        android:layout_marginTop="25dp" />
+        android:textStyle="bold"
+        android:layout_marginBottom="225dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="City"
+        android:textColor="@color/splash_text"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginBottom="200dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ahomehk.constructioncity.items.Item;
@@ -47,6 +48,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         // each data item is just a string in this case
         public NetworkImageView img;
         public TextView text;
+        public ProgressBar progressBar;
 
         public MyViewHolderClickListener mListener;
 
@@ -55,6 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
             text = (TextView) v.findViewById(R.id.tv_products_item);
             img = (NetworkImageView) v.findViewById(R.id.iv_products_item);
+            progressBar = (ProgressBar) v.findViewById(R.id.pb_products_item);
 
             mListener = listener;
             v.setOnClickListener(this);
@@ -65,8 +68,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             mListener.onItemClick(view, getAdapterPosition());
         }
 
-        public static interface MyViewHolderClickListener {
-            public void onItemClick(View caller, int pos);
+        public interface MyViewHolderClickListener {
+            void onItemClick(View caller, int pos);
         }
     }
 
@@ -90,13 +93,38 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         Item product = products.get(position);
 
         holder.text.setText(product.getItem_title());
+        //mImageLoader.get(product.getImg_add() + product.getImg_names()[0],
+        // ImageLoader.getImageListener(holder.img,R.drawable.splash_logo, R.drawable.image_load_error));
+        holder.img.setDefaultImageResId(R.drawable.image_load_error);
+        holder.img.setErrorImageResId(R.drawable.image_load_error);
         holder.img.setImageUrl(product.getImg_add()+product.getImg_names()[0], mImageLoader);
+        /*
+        mImageLoader.get(product.getImg_add()+product.getImg_names()[0], new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                if (response != null) {
+                    Bitmap bitmap = response.getBitmap();
+                    if (bitmap != null) {
+                        // ** code to turn off the progress wheel **
+                        // ** code to use the bitmap in your imageview **
 
+                        holder.img.setImageBitmap(bitmap);
+                        holder.progressBar.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                holder.img.setImageResource(R.drawable.image_load_error);
+                holder.progressBar.setVisibility(View.GONE);
+            }
+        });*/
     }
 
 

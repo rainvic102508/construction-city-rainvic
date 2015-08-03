@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -31,7 +32,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -87,13 +89,14 @@ public class MainActivity extends ActionBarActivity {
      * Number of advertisement images
      */
     String[] ads_src;
-
+    static int currentPage = 0;
     String img_url;
 
     private ImageView ads_next, ads_prev;
     private LinearLayout ll_main_buttons;
     private int ads_next_height;
     private int padding_top_next_prev;
+
 
 
     @Override
@@ -107,7 +110,31 @@ public class MainActivity extends ActionBarActivity {
 
         initializeThisWeekTop();
 
+        slideAdsAutomatically();
 
+
+    }
+
+    private void slideAdsAutomatically(){
+
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == ads_src.length-1) {
+                    currentPage = 0;
+                }
+                mPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 1000, 3000);
     }
 
     private void initializeThisWeekTop(){
@@ -133,7 +160,7 @@ public class MainActivity extends ActionBarActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                                 Intent intent = new Intent(MainActivity.this, ItemDetail.class);
-                                intent.putExtra(ItemDetail.EXTRA_TAG, (Serializable)twtAdapter.getItem(position));
+                                intent.putExtra(ItemDetail.EXTRA_TAG, twtAdapter.getItem(position));
                                 startActivity(intent);
                                 MainActivity.this.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             }
@@ -161,7 +188,11 @@ public class MainActivity extends ActionBarActivity {
         // Restore ads images
         SharedPreferences adsImgs = getSharedPreferences(ADS_SRC, 0);
         String response = adsImgs.getString(ADS_IMGS, null);
-        ads_src = response.split(":");
+        try{
+            ads_src = response.split(":");
+        }catch (NullPointerException e){
+            Log.e(TAG, "response.split produce 'NullPointerException'");
+        }
     }
 
 
@@ -182,16 +213,6 @@ public class MainActivity extends ActionBarActivity {
         // Commit the edits!
         editor.commit();
 
-        //resource size
-
-/*
-        BitmapFactory.Options dimensions = new BitmapFactory.Options();
-        dimensions.inJustDecodeBounds = true;
-        Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fragment_test_img_1, dimensions);
-        int image_height = dimensions.outHeight;
-        int image_width =  dimensions.outWidth;
-*/
-
         //next/prev imageView size
         BitmapFactory.Options vext_prev_dimensions = new BitmapFactory.Options();
         vext_prev_dimensions.inJustDecodeBounds = true;
@@ -206,15 +227,12 @@ public class MainActivity extends ActionBarActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.getLayoutParams().height = mPagerHeight;
-        mPager.setPadding(screen_width/5, 0, screen_width/5, 0);
+        mPager.setPadding(screen_width/10, 0, screen_width/10, 0);
         mPager.setClipToPadding(false);
         mPager.setPageMargin(16);
 
         ads_next = (ImageView) findViewById(R.id.iv_ads_next);
         ads_prev = (ImageView) findViewById(R.id.iv_ads_prev);
-
-        //ll_main_buttons = (LinearLayout) findViewById(R.id.ll_main_buttons);
-        //ll_main_buttons.getLayoutParams().height = mPagerHeight;
 
 
         padding_top_next_prev = (mPagerHeight - nextPrevHeight)/2;
@@ -241,7 +259,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                currentPage = position;
             }
 
             @Override
@@ -313,6 +331,11 @@ public class MainActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     /**

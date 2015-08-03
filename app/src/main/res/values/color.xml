@@ -19,10 +19,13 @@
 
     <item name="twt_item_background" type="color">#bbffffff</item>
     <item name="twt_txt_shadow" type="color">#eeffffff</item>
-    <item name="twt_title_background" type="color">#00ffffff</item>
-    <item name="twt_title_txt_color" type="color">#aa000000</item>
+    <item name="twt_title_background" type="color">#616161</item>
+    <item name="twt_title_txt_color" type="color">#EEEEEE</item>
 
     <item name="tv_types_grid_section_back" type="color">#BDBDBD</item>
+    <item name="item_detail_title" type="color">#ff2a2a2a</item>
+    <item name="item_detail_title_shadow" type="color">#775b5b5b</item>
+
 
     <!-- activity_main.xml -->
     <item name="ll_main_buttons_background" type="color">#ffffff</item>
