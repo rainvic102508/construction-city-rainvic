@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.ahomehk.constructioncity.items.Item;
 import com.ahomehk.constructioncity.items.ItemType;
@@ -31,13 +30,6 @@ public class SplashScreen extends Activity {
     private static int SPLASH_TIME_OUT = 500;
 
     private static final String TAG = "SplashScreen";
-
-
-
-    /**
-     * Communication handler, communicate with the server
-     */
-    private ServerSyncAdapter SSAdapter;
 
     private Resources res;
 
@@ -85,7 +77,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                         e.printStackTrace();
                                     }
                                     result = dbAdapter.needUpdate(table_name, new_date);
-                                    Log.i(TAG, "needUpdate(" + table_name + ", " + new_date + ") ---> return with: " + result);
+                                    //Log.i(TAG, "needUpdate(" + table_name + ", " + new_date + ") ---> return with: " + result);
                                     if (result != null) {
                                         updateDatabase(result);
                                         dbAdapter.updateToNewDate(result, new_date);
@@ -98,7 +90,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                 //set string for volley GET request with params
                                 String url = res.getString(R.string.server_address)
                                         + res.getString(R.string.count_num_of_ads);
-                                Log.i(TAG, url);
+                                //Log.i(TAG, url);
 
                                 // Formulate the request and handle the response.
                                 StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -129,7 +121,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.e(TAG, error.toString());
+                                                //Log.e(TAG, error.toString());
                                             }
                                         });
                                 // Access the RequestQueue through your singleton class.
@@ -141,7 +133,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                             @Override
                             public void onErrorResponse(VolleyError error) {
 
-                                Toast.makeText(SplashScreen.this, "volley error!!\n" + error.toString(), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(SplashScreen.this, "volley error!!\n" + error.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
 
@@ -166,7 +158,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                 updateProviderTable();
                 break;
             default:
-                Log.w(TAG, "updateDatabase(String table_name) : table name did not match");
+                //Log.w(TAG, "updateDatabase(String table_name) : table name did not match");
                 break;
 
         }
@@ -194,7 +186,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                             try{
                                 jsonObject = response.getJSONObject(i);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTable() : while getting an obj-"+e.toString());
+                                //Log.e(TAG, "updateItemTable() : while getting an obj-"+e.toString());
                             }
 
 
@@ -221,10 +213,10 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                         jsonObject.getInt(DBAdapter.COLUMN_ITEM_LEAD_TIME)
                                         );
                                 item.setImg_names(jsonObject.getString(DBAdapter.COLUMN_ITEM_IMG_NAMES));
-                                Log.i(TAG, "extra: "+jsonObject.getString(DBAdapter.COLUMN_ITEM_EXTRA_DESCRIPTION));
+                                //Log.i(TAG, "extra: "+jsonObject.getString(DBAdapter.COLUMN_ITEM_EXTRA_DESCRIPTION));
                                 items.add(item);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTable() : while populate the object-"+e.toString());
+                                //Log.e(TAG, "updateItemTable() : while populate the object-"+e.toString());
                             }
                         }
 
@@ -235,7 +227,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
 
                         dbAdapter.moveItemTable(items);
 
-                        Toast.makeText(SplashScreen.this, "update Item table", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(SplashScreen.this, "update Item table", Toast.LENGTH_LONG).show();
 
 
                     }
@@ -243,7 +235,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "updateItemTable() : " + error.toString());
+                        //Log.e(TAG, "updateItemTable() : " + error.toString());
                     }
                 });
 
@@ -273,7 +265,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                             try{
                                 jsonObject = response.getJSONObject(i);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTable() : while getting an obj -"+e.toString());
+                                //Log.e(TAG, "updateItemTable() : while getting an obj -"+e.toString());
                             }
 
                             //populate the jsonObject values to the class
@@ -291,7 +283,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                 );
                                 items.add(itemType);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTypeTable() : while populate the object -"+e.toString());
+                                //Log.e(TAG, "updateItemTypeTable() : while populate the object -"+e.toString());
                             }
                         }
 
@@ -308,7 +300,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "updateItemTable() : " + error.toString());
+                        //Log.e(TAG, "updateItemTable() : " + error.toString());
                     }
                 });
 
@@ -339,7 +331,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                             try{
                                 jsonObject = response.getJSONObject(i);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTable() : while getting an obj-"+e.toString());
+                                //Log.e(TAG, "updateItemTable() : while getting an obj-"+e.toString());
                             }
 
                             //populate the jsonObject values to the class
@@ -355,7 +347,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
                                 );
                                 items.add(item);
                             }catch(JSONException e){
-                                Log.e(TAG, "updateItemTable() : while populate the object-"+e.toString());
+                                //Log.e(TAG, "updateItemTable() : while populate the object-"+e.toString());
                             }
                         }
 
@@ -372,7 +364,7 @@ ArrayList<Integer> tryit = new ArrayList<>();
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "updateItemTable() : " + error.toString());
+                        //Log.e(TAG, "updateItemTable() : " + error.toString());
                     }
                 });
 

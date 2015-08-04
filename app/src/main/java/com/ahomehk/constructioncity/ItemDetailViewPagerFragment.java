@@ -6,48 +6,47 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 
-public class ImageViewPager extends Fragment {
-
-    private final static String TAG = "AdsFragment";
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class ItemDetailViewPagerFragment extends Fragment {
+    private static final String TAG = "ItemDetailsFragment";
 
     //image view
-    NetworkImageView ads;
-
-
+    NetworkImageView item_img;
     ImageLoader mImageLoader;
 
-    //img url
+    //position num
     String img_url;
 
-    public ImageViewPager() {
-        // Required empty public constructor
+
+    public ItemDetailViewPagerFragment() {
     }
 
-    public void setUrl(String url){
+    public void setImgUrl(String url){
         this.img_url = url;
-        Log.i(TAG, "url: "+img_url);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_ads, container, false);
-        ads = (NetworkImageView) rootView.findViewById(R.id.iv_ads);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_item_detail, container, false);
+        item_img = (NetworkImageView) rootView.findViewById(R.id.iv_item_img);
 
         // Get the ImageLoader through your singleton class.
         mImageLoader = MySingleton.getInstance(getActivity()).getImageLoader();
+        Log.i(TAG, "img url: "+img_url);
 
-        ads.setImageUrl(img_url, mImageLoader);
+        item_img.setImageUrl(img_url, mImageLoader);
+        //mImageLoader.get(img_url, ImageLoader.getImageListener(item_img, R.drawable.warning, R.drawable.warning));
 
-        //ads.setImageResource(getRscId(position));
         return rootView;
     }
 
 }
+

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,16 +97,16 @@ public class SectionedGridRecyclerViewAdapter extends RecyclerView.Adapter<Recyc
             int viewType = typeView-1;
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.tv_types_grid_item, parent, false);
+                    .inflate(R.layout.item_types_gridview, parent, false);
             TextView tv_txt_item = (TextView) v.findViewById(R.id.tv_txt_types_grid);
-            TypesGridAdapter.ViewHolder vh = new TypesGridAdapter.ViewHolder(tv_txt_item, new TypesGridAdapter.ViewHolder.MyViewHolderClickListener(){
+            TypesGridRecyclerAdapter.ViewHolder vh = new TypesGridRecyclerAdapter.ViewHolder(tv_txt_item, new TypesGridRecyclerAdapter.ViewHolder.MyViewHolderClickListener(){
                 public void onItemClick(View caller, int pos) {
 
-                    Log.i(TAG, "onPotato~~:::" + TypesGridAdapter.types.get(sectionedPositionToPosition(pos)));
-                    Intent i = new Intent(mContext, ProductListActivity.class);
+                    //Log.i(TAG, "onPotato~~:::" + TypesGridAdapter.types.get(sectionedPositionToPosition(pos)));
+                    Intent i = new Intent(mContext, ProductRecyclerActivity.class);
                     i.putExtra(
-                            ProductListActivity.ARG_PRODUCT_LIST,
-                            TypesGridAdapter.types.get(sectionedPositionToPosition(pos)));
+                            ProductRecyclerActivity.ARG_PRODUCT_LIST,
+                            TypesGridRecyclerAdapter.types.get(sectionedPositionToPosition(pos)));
                     mContext.startActivity(i);
                 }
             });

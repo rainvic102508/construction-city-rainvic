@@ -22,7 +22,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 /**
  * Created by rainvic on 20/5/15.
  */
-public class ItemsListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
+public class ListViewAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
     public static final String TAG = "ItemsListAdapter";
 
@@ -35,7 +35,7 @@ public class ItemsListAdapter extends BaseAdapter implements StickyListHeadersAd
     private int img_size;
     private ImageLoader mImageLoader;
 
-    public ItemsListAdapter(Context context, ArrayList<Item> items, ArrayList<String> img_add) {
+    public ListViewAdapter(Context context, ArrayList<Item> items, ArrayList<String> img_add) {
         //initializing
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);
@@ -102,7 +102,7 @@ public class ItemsListAdapter extends BaseAdapter implements StickyListHeadersAd
 
         if (convertView == null) {
             holder = new HeaderViewHolder();
-            convertView = inflater.inflate(R.layout.lv_fragment_lv_header, parent, false);
+            convertView = inflater.inflate(R.layout.item_listview_header, parent, false);
             holder.text = (TextView) convertView.findViewById(R.id.tv_fragment_lv_header);
             holder.background = (RelativeLayout) convertView.findViewById(R.id.rv_lv_header);
             convertView.setTag(holder);

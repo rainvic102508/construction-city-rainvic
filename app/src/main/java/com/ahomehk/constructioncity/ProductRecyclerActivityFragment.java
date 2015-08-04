@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ProductListActivityFragment extends Fragment {
+public class ProductRecyclerActivityFragment extends Fragment {
 
     private static final String TAG = "ProductListFragment";
 
@@ -39,8 +39,8 @@ public class ProductListActivityFragment extends Fragment {
      * @return A new instance of fragment TypesGridFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductListActivityFragment newInstance(String param1) {
-        ProductListActivityFragment fragment = new ProductListActivityFragment();
+    public static ProductRecyclerActivityFragment newInstance(String param1) {
+        ProductRecyclerActivityFragment fragment = new ProductRecyclerActivityFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -49,7 +49,7 @@ public class ProductListActivityFragment extends Fragment {
         return fragment;
     }
 
-    public ProductListActivityFragment() {
+    public ProductRecyclerActivityFragment() {
     }
 
     @Override
@@ -81,7 +81,7 @@ public class ProductListActivityFragment extends Fragment {
         rvProducts.setLayoutManager(rvProductsLayoutManager);
 
         // specify an adapter (see also next example)
-        rvProductsAdapter = new ProductsAdapter(products, getActivity());
+        rvProductsAdapter = new ProductsRecyclerAdapter(products, getActivity());
 
         rvProducts.setAdapter(rvProductsAdapter);
 

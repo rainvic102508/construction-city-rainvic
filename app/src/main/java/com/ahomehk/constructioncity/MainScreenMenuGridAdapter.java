@@ -12,12 +12,12 @@ import android.widget.TextView;
 /**
  * Created by rainvic on 27/4/15.
  */
-public class MainMenuAdapter extends BaseAdapter {
+public class MainScreenMenuGridAdapter extends BaseAdapter {
 
     Context mContext;
     String[] menuTitles;
 
-    public MainMenuAdapter(Context c){
+    public MainScreenMenuGridAdapter(Context c){
         this.mContext = c;
         Resources res = mContext.getResources();
         menuTitles = res.getStringArray(R.array.main_menu_list);
@@ -42,7 +42,7 @@ public class MainMenuAdapter extends BaseAdapter {
         Holder holder = new Holder();
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.main_menu_icon, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.item_mainscreen_menu, viewGroup, false);
 
         holder.txt = (TextView) itemView.findViewById(R.id.tv_main_menu);
         holder.img = (ImageView) itemView.findViewById(R.id.iv_mainbutton);

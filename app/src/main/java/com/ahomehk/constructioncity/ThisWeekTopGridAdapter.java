@@ -2,7 +2,6 @@ package com.ahomehk.constructioncity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.ArrayList;
 
 
-public class TWTAdapter extends BaseAdapter {
+public class ThisWeekTopGridAdapter extends BaseAdapter {
     private static final String TAG = "LVAdapter";
     private Context mContext;
     private ArrayList<Item> items;
@@ -26,7 +25,7 @@ public class TWTAdapter extends BaseAdapter {
 
 
 
-    public TWTAdapter(Context mContext, String[] arr) {
+    public ThisWeekTopGridAdapter(Context mContext, String[] arr) {
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);
         DBAdapter dbAdapter = new DBAdapter(mContext);
@@ -35,7 +34,7 @@ public class TWTAdapter extends BaseAdapter {
         if(getImgSize()!=-1){
             img_size = getImgSize()/4;
         }else{
-            Log.e(TAG, "getImgSize() returns -1!!");
+            //Log.e(TAG, "getImgSize() returns -1!!");
         }
     }
 
@@ -60,7 +59,7 @@ public class TWTAdapter extends BaseAdapter {
 
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.twt_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_this_week_top, parent, false);
             holder.text = (TextView) convertView.findViewById(R.id.tv_twt_item_title);
             holder.img = (NetworkImageView) convertView.findViewById(R.id.iv_twt_item);
 

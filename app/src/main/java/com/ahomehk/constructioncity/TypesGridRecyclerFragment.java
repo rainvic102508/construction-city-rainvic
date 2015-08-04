@@ -16,10 +16,10 @@ import java.util.List;
 
 
 /**
- * Use the {@link TypesGridFragment#newInstance} factory method to
+ * Use the {@link TypesGridRecyclerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TypesGridFragment extends Fragment {
+public class TypesGridRecyclerFragment extends Fragment {
 
     private static final String ARG_TYPES_GRID = "types_grid";
 
@@ -39,12 +39,12 @@ public class TypesGridFragment extends Fragment {
      * @return A new instance of fragment TypesGridFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TypesGridFragment newInstance() {
-        TypesGridFragment fragment = new TypesGridFragment();
+    public static TypesGridRecyclerFragment newInstance() {
+        TypesGridRecyclerFragment fragment = new TypesGridRecyclerFragment();
         return fragment;
     }
 
-    public TypesGridFragment() {
+    public TypesGridRecyclerFragment() {
     }
 
     @Override
@@ -76,7 +76,7 @@ public class TypesGridFragment extends Fragment {
         rv_types.setLayoutManager(rvTypesLayoutManager);
 
         // specify an adapter (see also next example)
-        rvTypesAdapter = new TypesGridAdapter(types);
+        rvTypesAdapter = new TypesGridRecyclerAdapter(types);
 
         //This is the code to provide a sectioned grid
         List<SectionedGridRecyclerViewAdapter.Section> sections =
@@ -94,7 +94,7 @@ public class TypesGridFragment extends Fragment {
         //Add your adapter to the sectionAdapter
         SectionedGridRecyclerViewAdapter.Section[] dummy = new SectionedGridRecyclerViewAdapter.Section[sections.size()];
         SectionedGridRecyclerViewAdapter mSectionedAdapter = new
-                SectionedGridRecyclerViewAdapter(getActivity(),R.layout.tv_types_grid_section,R.id.tv_txt_types_grid_section,rv_types,rvTypesAdapter);
+                SectionedGridRecyclerViewAdapter(getActivity(),R.layout.item_types_gridview_header,R.id.tv_txt_types_grid_section,rv_types,rvTypesAdapter);
         mSectionedAdapter.setSections(sections.toArray(dummy));
 
         rv_types.setAdapter(mSectionedAdapter);

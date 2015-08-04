@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -48,7 +47,7 @@ public class SearchableActivity extends ActionBarActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             DBAdapter db = new DBAdapter(this);
             searchResults = db.getSearchResult(query);
-            Log.i(TAG, "Intent extra: " + query);
+            //Log.i(TAG, "Intent extra: " + query);
         }
         SearchResultAdapter adapter = new SearchResultAdapter(this, searchResults);
         lv_searchable.setAdapter(adapter);
@@ -56,8 +55,8 @@ public class SearchableActivity extends ActionBarActivity {
         lv_searchable.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(SearchableActivity.this, ItemDetail.class);
-                intent.putExtra(ItemDetail.EXTRA_TAG, (Serializable)searchResults.get(position));
+                Intent intent = new Intent(SearchableActivity.this, ItemDetailActivity.class);
+                intent.putExtra(ItemDetailActivity.EXTRA_TAG, (Serializable)searchResults.get(position));
                 startActivity(intent);
             }
         });
@@ -96,7 +95,7 @@ public class SearchableActivity extends ActionBarActivity {
             if(getImgSize()!=-1){
                 img_size = getImgSize()/4;
             }else{
-                Log.e(TAG, "getImgSize() returns -1!!");
+                //Log.e(TAG, "getImgSize() returns -1!!");
             }
 
         }
@@ -109,7 +108,7 @@ public class SearchableActivity extends ActionBarActivity {
             // Check if an existing view is being reused, otherwise inflate the view
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.search_result_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_search_result, parent, false);
                 holder.text = (TextView) convertView.findViewById(R.id.tv_sr_title);
                 holder.img = (NetworkImageView) convertView.findViewById(R.id.iv_sr);
 

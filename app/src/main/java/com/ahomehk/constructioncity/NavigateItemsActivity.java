@@ -37,7 +37,7 @@ public class NavigateItemsActivity extends ActionBarActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_activity2);
+        setContentView(R.layout.activity_navigate_item);
 
         //set menuTitles
         Resources res = this.getResources();
@@ -160,7 +160,7 @@ public class NavigateItemsActivity extends ActionBarActivity{
                     arr.add("awesome");
                     arr.add("crazy");
                      */
-                    return TypesGridFragment.newInstance();
+                    return TypesGridRecyclerFragment.newInstance();
                     //Fragment testfragment = ListViewFragment.newInstance(i);
                     /*
                     Bundle testargs = new Bundle();

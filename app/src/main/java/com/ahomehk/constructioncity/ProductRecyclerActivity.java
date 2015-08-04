@@ -2,12 +2,11 @@ package com.ahomehk.constructioncity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ProductListActivity extends ActionBarActivity {
+public class ProductRecyclerActivity extends ActionBarActivity {
 
     private static final String TAG = "ProductListActivity";
 
@@ -21,7 +20,7 @@ public class ProductListActivity extends ActionBarActivity {
 
 
         arg = getIntent().getStringExtra(ARG_PRODUCT_LIST);
-        Log.i(TAG, "argument: " + arg);
+        //Log.i(TAG, "argument: " + arg);
 
 
         // Check that the activity is using the layout version with
@@ -36,7 +35,7 @@ public class ProductListActivity extends ActionBarActivity {
             }
 
             // Create a new Fragment to be placed in the activity layout
-            ProductListActivityFragment fragment = ProductListActivityFragment.newInstance(arg);
+            ProductRecyclerActivityFragment fragment = ProductRecyclerActivityFragment.newInstance(arg);
 
 
             // Add the fragment to the 'fragment_container' FrameLayout

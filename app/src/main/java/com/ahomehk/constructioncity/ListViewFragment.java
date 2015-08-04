@@ -80,14 +80,14 @@ public class ListViewFragment extends Fragment {
                 R.layout.fragment_listview, container, false);
 
         StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.lv_fragment);
-        final ItemsListAdapter adapter = new ItemsListAdapter(getActivity(), items, img_add);
+        final ListViewAdapter adapter = new ListViewAdapter(getActivity(), items, img_add);
         stickyList.setAdapter(adapter);
 
         stickyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent i = new Intent(getActivity(), ItemDetail.class);
-                i.putExtra(ItemDetail.EXTRA_TAG, adapter.getItem(position));
+                Intent i = new Intent(getActivity(), ItemDetailActivity.class);
+                i.putExtra(ItemDetailActivity.EXTRA_TAG, adapter.getItem(position));
                 startActivity(i);
                 getActivity().overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }

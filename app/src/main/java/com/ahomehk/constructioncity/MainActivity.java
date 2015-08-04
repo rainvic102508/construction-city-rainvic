@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
     /**Gridview(main menu icon)
      */
     private GridView gridView;
-    private MainMenuAdapter mainMenuAdapter;
+    private MainScreenMenuGridAdapter mainScreenMenuGridAdapter;
 
     /**
      * ListView(This week top)
@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
      *
      */
     private GridView twtGrid;
-    private TWTAdapter twtAdapter;
+    private ThisWeekTopGridAdapter thisWeekTopGridAdapter;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -153,14 +153,14 @@ public class MainActivity extends ActionBarActivity {
                         String[] arr = response.split(":");
                         Log.i(TAG, "arr :"+response);
                         //initialize list view adapter
-                        twtAdapter = new TWTAdapter(MainActivity.this, arr);
-                        twtGrid.setAdapter(twtAdapter);
+                        thisWeekTopGridAdapter = new ThisWeekTopGridAdapter(MainActivity.this, arr);
+                        twtGrid.setAdapter(thisWeekTopGridAdapter);
 
                         twtGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                                Intent intent = new Intent(MainActivity.this, ItemDetail.class);
-                                intent.putExtra(ItemDetail.EXTRA_TAG, twtAdapter.getItem(position));
+                                Intent intent = new Intent(MainActivity.this, ItemDetailActivity.class);
+                                intent.putExtra(ItemDetailActivity.EXTRA_TAG, thisWeekTopGridAdapter.getItem(position));
                                 startActivity(intent);
                                 MainActivity.this.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             }
@@ -271,8 +271,8 @@ public class MainActivity extends ActionBarActivity {
 
 
         gridView = (GridView) findViewById(R.id.gvButtons);
-        mainMenuAdapter = new MainMenuAdapter(this);
-        gridView.setAdapter(mainMenuAdapter);
+        mainScreenMenuGridAdapter = new MainScreenMenuGridAdapter(this);
+        gridView.setAdapter(mainScreenMenuGridAdapter);
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -350,9 +350,9 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int position) {
-            ImageViewPager imageViewPager = new ImageViewPager();
-            imageViewPager.setUrl(img_url+ads_src[position]);
-            return imageViewPager;
+            AdsViewPagerFragment adsViewPagerFragment = new AdsViewPagerFragment();
+            adsViewPagerFragment.setUrl(img_url+ads_src[position]);
+            return adsViewPagerFragment;
         }
 
         @Override

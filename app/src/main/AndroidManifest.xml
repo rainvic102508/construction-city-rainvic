@@ -64,7 +64,7 @@
                 android:value=".SearchableActivity" />
         </activity>
         <activity
-            android:name=".ItemDetail"
+            android:name=".ItemDetailActivity"
             android:label="@string/title_activity_item_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithoutLogo" >
@@ -79,7 +79,7 @@
                 android:value=".SearchableActivity" />
         </activity>
         <activity
-            android:name=".ProductListActivity"
+            android:name=".ProductRecyclerActivity"
             android:label="@string/title_activity_product_list" >
         </activity>
     </application>

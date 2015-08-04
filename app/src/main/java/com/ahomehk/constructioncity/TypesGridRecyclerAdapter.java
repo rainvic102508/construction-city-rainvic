@@ -10,13 +10,13 @@ import java.util.ArrayList;
 /**
  * Created by rainvic on 25/7/15.
  */
-public class TypesGridAdapter extends RecyclerView.Adapter<TypesGridAdapter.ViewHolder> {
+public class TypesGridRecyclerAdapter extends RecyclerView.Adapter<TypesGridRecyclerAdapter.ViewHolder> {
 
     static final private String TAG = "TypesGridAdapter";
 
     public static ArrayList<String> types = new ArrayList<>();
 
-    public TypesGridAdapter(ArrayList<String> types) {
+    public TypesGridRecyclerAdapter(ArrayList<String> types) {
         this.types = types;
     }
 

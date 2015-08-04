@@ -32,7 +32,7 @@ import com.ahomehk.constructioncity.items.Item;
 import com.ahomehk.constructioncity.items.Provider;
 
 
-public class ItemDetail extends ActionBarActivity {
+public class ItemDetailActivity extends ActionBarActivity {
 
     private static final String TAG = "ItemDetails";
     public static final String EXTRA_TAG = "ItemDetailsExtra";
@@ -96,7 +96,7 @@ public class ItemDetail extends ActionBarActivity {
         getExtras();
 
 
-        Resources res = ItemDetail.this.getResources();
+        Resources res = ItemDetailActivity.this.getResources();
         img_url += res.getString(R.string.server_address) + res.getString(R.string.image_folder) +
                 item.getItem_img_file() + "/";
 
@@ -353,7 +353,7 @@ public class ItemDetail extends ActionBarActivity {
     }
 
     public Provider getProviderOfItem(){
-        DBAdapter dbAdapter = new DBAdapter(ItemDetail.this);
+        DBAdapter dbAdapter = new DBAdapter(ItemDetailActivity.this);
         return dbAdapter.getProviderOfItem(item.get_provider_id());
     }
 
@@ -411,9 +411,9 @@ public class ItemDetail extends ActionBarActivity {
         public Fragment getItem(int position) {
             String url = img_url + item.getImg_names()[position];
             Log.i(TAG, "image url: " + url);
-            ItemDetailFragment itemDetailFragment = new ItemDetailFragment();
-            itemDetailFragment.setImgUrl(url);
-            return itemDetailFragment;
+            ItemDetailViewPagerFragment itemDetailViewPagerFragment = new ItemDetailViewPagerFragment();
+            itemDetailViewPagerFragment.setImgUrl(url);
+            return itemDetailViewPagerFragment;
         }
 
         @Override
