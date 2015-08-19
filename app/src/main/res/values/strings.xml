@@ -67,4 +67,6 @@
     <string name="origin_title">Origin</string>
     <string name="leadtime_title">Lead time</string>
     <string name="remark_title">Remark</string>
+    <string name="similar_color_size_button">Similar Products</string>
+    <string name="similar_series_button">Series</string>
 </resources>

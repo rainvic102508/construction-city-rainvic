@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 public class ProductRecyclerActivity extends ActionBarActivity {
 
-    private static final String TAG = "ProductListActivity";
+    private static final String TAG = ProductRecyclerActivity.class.getSimpleName();
 
     public static final String ARG_PRODUCT_LIST = "arg_product_list";
     public String arg;
@@ -35,7 +35,7 @@ public class ProductRecyclerActivity extends ActionBarActivity {
             }
 
             // Create a new Fragment to be placed in the activity layout
-            ProductRecyclerActivityFragment fragment = ProductRecyclerActivityFragment.newInstance(arg);
+            ProductRecyclerFragment fragment = ProductRecyclerFragment.newInstance(arg);
 
 
             // Add the fragment to the 'fragment_container' FrameLayout

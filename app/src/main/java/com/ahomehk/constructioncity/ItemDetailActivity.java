@@ -34,7 +34,7 @@ import com.ahomehk.constructioncity.items.Provider;
 
 public class ItemDetailActivity extends ActionBarActivity {
 
-    private static final String TAG = "ItemDetails";
+    private static final String TAG = ItemDetailActivity.class.getSimpleName();
     public static final String EXTRA_TAG = "ItemDetailsExtra";
     public static final String EXTRA_DATA_TYPE = "DataTypeExtra";
 
@@ -219,7 +219,7 @@ public class ItemDetailActivity extends ActionBarActivity {
         }
 
 
-        Log.i(TAG, "lead time: "+item.getItem_lead_time());
+        Log.v(TAG, "lead time: "+item.getItem_lead_time());
         tv_item_type.setText(getItemTypeText());
         tv_size.setText(size_txt);
         tv_price.setText(price_txt);
@@ -237,6 +237,15 @@ public class ItemDetailActivity extends ActionBarActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    public void similarProductsClicked(View v){
+        Log.v(TAG, "Similar Products clicked!");
+        Intent i = new Intent(this, ProductRecyclerActivity.class);
+    }
+
+    public void seriesClicked(View v){
+        Log.v(TAG, "series clicked!");
     }
 
 
@@ -333,7 +342,7 @@ public class ItemDetailActivity extends ActionBarActivity {
     public void getExtras(){
         Intent intent = getIntent();
         item = (Item)intent.getSerializableExtra(EXTRA_TAG);
-        Log.i(TAG, "############  item.getType_main(): "+item.getType_main());
+        Log.v(TAG, "############  item.getType_main(): "+item.getType_main());
         switch(item.getType_main()){
             case "product":
                 dataType = "products";
@@ -424,7 +433,7 @@ public class ItemDetailActivity extends ActionBarActivity {
 
 
     public void sendWhatsapp(View view){
-        Log.i(TAG, "Send message to provider via whatsapp!!");
+        Log.v(TAG, "Send message to provider via whatsapp!!");
 
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
@@ -455,7 +464,7 @@ public class ItemDetailActivity extends ActionBarActivity {
     }
 
     public void callProvider(View view){
-        Log.i(TAG, "call provider!!");
+        Log.v(TAG, "call provider!!");
 
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 

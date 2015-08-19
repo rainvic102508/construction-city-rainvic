@@ -1,4 +1,4 @@
-package com.ahomehk.constructioncity;
+package com.ahomehk.constructioncity.items;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahomehk.constructioncity.items.Item;
+import com.ahomehk.constructioncity.DBAdapter;
+import com.ahomehk.constructioncity.ProductsRecyclerAdapter;
+import com.ahomehk.constructioncity.R;
 
 import java.util.ArrayList;
 
-
 /**
- * A placeholder fragment containing a simple view.
+ * Created by rainvic on 19/8/15.
  */
-public class ProductRecyclerActivityFragment extends Fragment {
+public class SimilarProductFragment extends Fragment {
 
-    private static final String TAG = "ProductListFragment";
+    private static final String TAG = SimilarProductFragment.class.getSimpleName();
 
     private static final String ARG_PARAM1 = "param1";
 
@@ -39,8 +40,8 @@ public class ProductRecyclerActivityFragment extends Fragment {
      * @return A new instance of fragment TypesGridFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductRecyclerActivityFragment newInstance(String param1) {
-        ProductRecyclerActivityFragment fragment = new ProductRecyclerActivityFragment();
+    public static SimilarProductFragment newInstance(String param1) {
+        SimilarProductFragment fragment = new SimilarProductFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -49,7 +50,7 @@ public class ProductRecyclerActivityFragment extends Fragment {
         return fragment;
     }
 
-    public ProductRecyclerActivityFragment() {
+    public SimilarProductFragment() {
     }
 
     @Override

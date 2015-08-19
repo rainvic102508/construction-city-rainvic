@@ -268,7 +268,35 @@
         android:layout_marginRight="12dp"
         android:onClick="callProvider" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/similar_color_size_button"
+        android:id="@+id/similar_size_color_button"
+        android:layout_alignBottom="@+id/bt_call_provider"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@drawable/textview_border"
+        android:onClick="similarProductsClicked"
+        android:clickable="true"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/similar_series_button"
+        android:id="@+id/similar_series_button"
+        android:layout_alignBottom="@+id/similar_size_color_button"
+        android:layout_toEndOf="@+id/similar_size_color_button"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/textview_border"
+        android:onClick="seriesClicked"
+        android:clickable="true"/>
 
 
 </RelativeLayout>
