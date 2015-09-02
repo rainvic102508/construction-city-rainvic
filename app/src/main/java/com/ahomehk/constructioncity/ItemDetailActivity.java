@@ -149,14 +149,19 @@ public class ItemDetailActivity extends ActionBarActivity {
 
 
         String price_txt = "";
-        if(item.getItem_price_min()!=-1)
-            price_txt += item.getItem_price_min()+" ~ ";
-        else
-            price_txt += "N ~ ";
-        if(item.getItem_price_max()!=-1)
-            price_txt += item.getItem_price_max();
-        else
-            price_txt += "N";
+        if(item.getItem_price_min()==-1 && item.getItem_price_max()==-1) {
+            tv_price.setVisibility(View.GONE);
+        } else {
+            tv_price.setText(price_txt);
+        }
+//        if(item.getItem_price_min()!=-1)
+//            price_txt += item.getItem_price_min()+" ~ ";
+//        else
+//            price_txt += "N ~ ";
+//        if(item.getItem_price_max()!=-1)
+//            price_txt += item.getItem_price_max();
+//        else
+//            price_txt += "N";
 
         String color_txt = "-";
         if(!item.getItem_color().equals("null"))
@@ -222,7 +227,6 @@ public class ItemDetailActivity extends ActionBarActivity {
         Log.v(TAG, "lead time: "+item.getItem_lead_time());
         tv_item_type.setText(getItemTypeText());
         tv_size.setText(size_txt);
-        tv_price.setText(price_txt);
         tv_company.setText(itemProvider.getProvider_title());
         tv_color.setText(color_txt);
         tv_finish.setText(finish_txt);
@@ -239,14 +243,14 @@ public class ItemDetailActivity extends ActionBarActivity {
 
     }
 
-    public void similarProductsClicked(View v){
-        Log.v(TAG, "Similar Products clicked!");
-        Intent i = new Intent(this, ProductRecyclerActivity.class);
-    }
-
-    public void seriesClicked(View v){
-        Log.v(TAG, "series clicked!");
-    }
+//    public void similarProductsClicked(View v){
+//        Log.v(TAG, "Similar Products clicked!");
+//        Intent i = new Intent(this, ProductRecyclerActivity.class);
+//    }
+//
+//    public void seriesClicked(View v){
+//        Log.v(TAG, "series clicked!");
+//    }
 
 
     private String getItemTypeText(){

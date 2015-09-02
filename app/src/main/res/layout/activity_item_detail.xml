@@ -61,21 +61,15 @@
                 android:id="@+id/tv_title_price"
                 android:layout_below="@+id/tv_item_type"
                 android:text="@string/price_title"
-                android:layout_marginTop="30dp"
-                android:textSize="14sp" />
+                android:layout_marginTop="30dp" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
+                android:layout_marginTop="30dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/tv_price"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_price"
-                android:layout_below="@+id/tv_item_type"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_item_type" />
 
 
 
@@ -83,158 +77,95 @@
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_size"
                 android:layout_below="@+id/tv_title_price"
-                android:layout_marginTop="12dp"
-                android:text="@string/size_title"
-                android:textSize="14sp" />
+                android:text="@string/size_title"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/tv_size"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_size"
-                android:layout_below="@+id/tv_price"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_price" />
 
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_company"
                 android:layout_below="@+id/tv_title_size"
-                android:text="@string/comp_title"
-                android:layout_marginTop="12dp"
-                android:textSize="14sp" />
+                android:text="@string/comp_title"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/tv_company"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_company"
-                android:layout_below="@+id/tv_size"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_size" />
 
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_color"
                 android:layout_below="@+id/tv_title_company"
-                android:layout_marginTop="12dp"
-                android:text="@string/color_title"
-                android:textSize="14sp" />
+                android:text="@string/color_title" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="in progress"
                 android:id="@+id/tv_color"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_color"
-                android:layout_below="@+id/tv_company"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_company" />
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_finishing"
                 android:layout_below="@+id/tv_title_color"
-                android:text="@string/finishing_title"
-                android:layout_marginTop="12dp"
-                android:textSize="14sp" />
+                android:text="@string/finishing_title" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="in progress"
                 android:id="@+id/tv_finishing"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_finishing"
-                android:layout_below="@+id/tv_color"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_color" />
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_place_of_origin"
                 android:layout_below="@+id/tv_title_finishing"
-                android:layout_marginTop="12dp"
-                android:text="@string/origin_title"
-                android:textSize="14sp" />
+                android:text="@string/origin_title" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="in progress"
                 android:id="@+id/tv_place_of_origin"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_place_of_origin"
-                android:layout_below="@+id/tv_finishing"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_finishing"/>
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_lead_time"
                 android:text="@string/leadtime_title"
-                android:layout_below="@+id/tv_title_place_of_origin"
-                android:layout_marginTop="12dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_title_place_of_origin" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="in progress"
                 android:id="@+id/tv_lead_time"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_lead_time"
-                android:layout_below="@+id/tv_place_of_origin"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_place_of_origin"/>
 
 
             <TextView
                 style="@style/ItemDetailTitle"
                 android:id="@+id/tv_title_extra_info"
                 android:layout_below="@+id/tv_title_lead_time"
-                android:text="@string/remark_title"
-                android:layout_marginTop="12dp"
-                android:textSize="14sp" />
+                android:text="@string/remark_title" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/ItemDetailText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="in progress"
                 android:id="@+id/tv_extra_info"
-                android:gravity="center"
                 android:layout_toRightOf="@+id/tv_title_extra_info"
-                android:layout_below="@+id/tv_lead_time"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp" />
+                android:layout_below="@+id/tv_lead_time" />
 
 
 
@@ -268,35 +199,35 @@
         android:layout_marginRight="12dp"
         android:onClick="callProvider" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/similar_color_size_button"
-        android:id="@+id/similar_size_color_button"
-        android:layout_alignBottom="@+id/bt_call_provider"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:padding="8dp"
-        android:background="@drawable/textview_border"
-        android:onClick="similarProductsClicked"
-        android:clickable="true"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/similar_color_size_button"-->
+        <!--android:id="@+id/similar_size_color_button"-->
+        <!--android:layout_alignBottom="@+id/bt_call_provider"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="12dp"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:background="@drawable/textview_border"-->
+        <!--android:onClick="similarProductsClicked"-->
+        <!--android:clickable="true"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/similar_series_button"
-        android:id="@+id/similar_series_button"
-        android:layout_alignBottom="@+id/similar_size_color_button"
-        android:layout_toEndOf="@+id/similar_size_color_button"
-        android:gravity="center"
-        android:padding="8dp"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/textview_border"
-        android:onClick="seriesClicked"
-        android:clickable="true"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/similar_series_button"-->
+        <!--android:id="@+id/similar_series_button"-->
+        <!--android:layout_alignBottom="@+id/similar_size_color_button"-->
+        <!--android:layout_toEndOf="@+id/similar_size_color_button"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:layout_marginStart="12dp"-->
+        <!--android:background="@drawable/textview_border"-->
+        <!--android:onClick="seriesClicked"-->
+        <!--android:clickable="true"/>-->
 
 
 </RelativeLayout>

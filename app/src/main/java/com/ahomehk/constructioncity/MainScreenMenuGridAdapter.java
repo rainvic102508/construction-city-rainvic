@@ -55,10 +55,14 @@ public class MainScreenMenuGridAdapter extends BaseAdapter {
     }
 
     Integer[] images = {
-      R.drawable.main_product, R.drawable.main_new_arrival,
-            R.drawable.main_service, R.drawable.main_recent_project,
-            R.drawable.main_design, R.drawable.main_news,
-            R.drawable.main_tools, R.drawable.main_accessories
+      R.drawable.main_product,
+            R.drawable.main_service,
+            R.drawable.main_accessories,
+            R.drawable.main_design,
+            R.drawable.main_recent_project,
+            R.drawable.main_new_arrival,
+            R.drawable.main_news,
+            R.drawable.main_contact_us
     };
 
     class Holder {

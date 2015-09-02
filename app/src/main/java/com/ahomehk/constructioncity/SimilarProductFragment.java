@@ -1,4 +1,4 @@
-package com.ahomehk.constructioncity.items;
+package com.ahomehk.constructioncity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahomehk.constructioncity.DBAdapter;
-import com.ahomehk.constructioncity.ProductsRecyclerAdapter;
-import com.ahomehk.constructioncity.R;
+import com.ahomehk.constructioncity.items.Item;
 
 import java.util.ArrayList;
 

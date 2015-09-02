@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 
 public class NavigateItemsActivity extends ActionBarActivity{
 
-    public static final String TAG = "NavigateItemsActivity";
+    public static final String TAG = NavigateItemsActivity.class.getSimpleName();
 
     // When requested, this adapter returns a DemoObjectFragment,
     // representing an object in the collection.
@@ -117,67 +117,11 @@ public class NavigateItemsActivity extends ActionBarActivity{
         public Fragment getItem(int i) {
             switch (i) {
                 case 0:
-                    /*
-                    ArrayList<String> arr = new ArrayList<>();
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                    arr.add("haha");
-                    arr.add("try");
-                    arr.add("great");
-                    arr.add("awesome");
-                    arr.add("crazy");
-                     */
                     return TypesGridRecyclerFragment.newInstance();
-                    //Fragment testfragment = ListViewFragment.newInstance(i);
-                    /*
-                    Bundle testargs = new Bundle();
-                    // Our object is just an integer :-P
-                    testargs.putInt(ListViewFragment.ARG_ITEMS, i);
-                    testfragment.setArguments(testargs);
-                    */
-                    //return testfragment;
+                case 7:
+                    return SimpleListViewFragment.newInstance();
                 default:
-                    Fragment fragment = ListViewFragment.newInstance(i);
-                    /*
-                    Bundle args = new Bundle();
-                    // Our object is just an integer :-P
-                    args.putInt(ListViewFragment.ARG_ITEMS, i);
-                    fragment.setArguments(args);
-                    */
-                    return fragment;
+                    return ListViewFragment.newInstance(i);
             }
 
         }
