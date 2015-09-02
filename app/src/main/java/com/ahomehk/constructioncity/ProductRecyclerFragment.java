@@ -77,7 +77,7 @@ public class ProductRecyclerFragment extends Fragment {
         rvProducts.setHasFixedSize(true);
 
         // use a linear layout manager
-        rvProductsLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
+        rvProductsLayoutManager = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(rvProductsLayoutManager);
 
         // specify an adapter (see also next example)

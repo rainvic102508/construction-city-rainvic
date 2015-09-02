@@ -1,5 +1,6 @@
 package com.ahomehk.constructioncity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.android.volley.toolbox.NetworkImageView;
  */
 public class ItemDetailViewPagerFragment extends Fragment {
     private static final String TAG = "ItemDetailsFragment";
+    public static final String IMG_URL = "img_url";
 
     //image view
     NetworkImageView item_img;
@@ -43,7 +45,9 @@ public class ItemDetailViewPagerFragment extends Fragment {
         item_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: implement
+                Intent intent = new Intent(getActivity(), ZoomableActivity.class);
+                intent.putExtra(IMG_URL, img_url);
+                startActivity(intent);
             }
         });
 

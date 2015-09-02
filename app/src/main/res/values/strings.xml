@@ -73,4 +73,5 @@
     <string name="email_title">E-mail</string>
     <string name="fax_title">Fax</string>
     <string name="phone_title">Phone</string>
+    <string name="title_activity_zoomable">ZoomableActivity</string>
 </resources>
