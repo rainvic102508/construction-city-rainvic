@@ -25,6 +25,8 @@ public class ItemDetailViewPagerFragment extends Fragment {
     String img_url;
 
 
+
+
     public ItemDetailViewPagerFragment() {
     }
 
@@ -32,11 +34,18 @@ public class ItemDetailViewPagerFragment extends Fragment {
         this.img_url = url;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_item_detail, container, false);
         item_img = (NetworkImageView) rootView.findViewById(R.id.iv_item_img);
+        item_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: implement
+            }
+        });
 
         // Get the ImageLoader through your singleton class.
         mImageLoader = MySingleton.getInstance(getActivity()).getImageLoader();
