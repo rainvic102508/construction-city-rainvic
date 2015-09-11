@@ -9,4 +9,6 @@
     <dimen name="progressive_padding_top_splash">100dp</dimen>
 
     <dimen name="card_corner_radius">4dp</dimen>
+
+    <dimen name="pager_title_strip">30dp</dimen>
 </resources>

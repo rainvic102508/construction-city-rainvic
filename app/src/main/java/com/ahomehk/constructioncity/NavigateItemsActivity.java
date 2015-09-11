@@ -12,13 +12,14 @@ import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
 
-public class NavigateItemsActivity extends ActionBarActivity{
+public class NavigateItemsActivity extends AppCompatActivity{
 
     public static final String TAG = NavigateItemsActivity.class.getSimpleName();
 
