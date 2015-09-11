@@ -7,6 +7,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.ahomehk.constructioncity.items.Item;
 import com.ahomehk.constructioncity.items.ItemType;
@@ -27,18 +29,22 @@ import java.util.ArrayList;
 public class SplashScreen extends Activity {
 
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 500;
+    private static int SPLASH_TIME_OUT = 0;
 
     private static final String TAG = "SplashScreen";
 
     private Resources res;
 
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-ArrayList<Integer> tryit = new ArrayList<>();
+        progressBar = (ProgressBar) findViewById(R.id.pb_splash_loading);
+        progressBar.setVisibility(View.VISIBLE);
+
+        ArrayList<Integer> tryit = new ArrayList<>();
         res = getResources();
 
         new Handler().postDelayed(new Runnable() {

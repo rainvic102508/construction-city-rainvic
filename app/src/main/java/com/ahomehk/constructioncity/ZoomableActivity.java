@@ -7,45 +7,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ZoomableActivity extends AppCompatActivity {
-
-    private ImageView zoomableImage;
-    private String img_url;
-    private PhotoViewAttacher mAttacher;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoomable);
 
-        zoomableImage = (ImageView) findViewById(R.id.zoomable_imageview);
 
-        img_url = getIntent().getExtras().getString(ItemDetailViewPagerFragment.IMG_URL);
 
-        // Retrieves an image specified by the URL, displays it in the UI.
-        ImageRequest request = new ImageRequest(img_url,
-                new Response.Listener<Bitmap>() {
-                    @Override
-                    public void onResponse(Bitmap bitmap) {
-                        zoomableImage.setImageBitmap(bitmap);
-                    }
-                }, 0, 0, null,
-                new Response.ErrorListener() {
-                    public void onErrorResponse(VolleyError error) {
-                        zoomableImage.setImageResource(R.drawable.image_load_error);
-                    }
-                });
-// Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(request);
-        // Attach a PhotoViewAttacher, which takes care of all of the zooming functionality.
-        mAttacher = new PhotoViewAttacher(zoomableImage);
+        PhotoView photoView = (PhotoView) findViewById(R.id.zoomable_imageview);
+
+        if (!ImageLoader.getInstance().isInited()) {
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+            ImageLoader.getInstance().init(config);
+        }
+
+        ImageLoader.getInstance().displayImage(getIntent().getExtras().getString(ItemDetailViewPagerFragment.IMG_URL), photoView);
 
     }
 

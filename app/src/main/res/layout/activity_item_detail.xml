@@ -55,21 +55,33 @@
                 android:textColor="#aa222222" />
 
 
-
             <TextView
                 style="@style/ItemDetailTitle"
-                android:id="@+id/tv_title_price"
+                android:id="@+id/tv_title_serial"
                 android:layout_below="@+id/tv_item_type"
-                android:text="@string/price_title"
+                android:text="@string/no_name_title"
                 android:layout_marginTop="30dp" />
             <TextView
                 style="@style/ItemDetailText"
                 android:layout_marginTop="30dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
+                android:id="@+id/tv_serial"
+                android:layout_toRightOf="@+id/tv_title_serial"
+                android:layout_below="@+id/tv_item_type" />
+
+            <TextView
+                style="@style/ItemDetailTitle"
+                android:id="@+id/tv_title_price"
+                android:layout_below="@+id/tv_title_serial"
+                android:text="@string/price_title" />
+            <TextView
+                style="@style/ItemDetailText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
                 android:id="@+id/tv_price"
                 android:layout_toRightOf="@+id/tv_title_price"
-                android:layout_below="@+id/tv_item_type" />
+                android:layout_below="@+id/tv_title_serial" />
 
 
 

@@ -72,7 +72,7 @@ public class ListViewAdapter extends BaseAdapter implements StickyListHeadersAda
 
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.fragment_listview_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_main_listview, parent, false);
             holder.text = (TextView) convertView.findViewById(R.id.tv_fragment_lv_item);
             holder.img = (NetworkImageView) convertView.findViewById(R.id.iv_fragment_lv_item);
 

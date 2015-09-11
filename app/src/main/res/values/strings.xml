@@ -74,4 +74,9 @@
     <string name="fax_title">Fax</string>
     <string name="phone_title">Phone</string>
     <string name="title_activity_zoomable">ZoomableActivity</string>
+
+    <!-- Splash screen -->
+    <string name="splash_title_1">CONSTRUCTION</string>
+    <string name="splash_title_2">CITY</string>
+    <string name="no_name_title">No/Name</string>
 </resources>

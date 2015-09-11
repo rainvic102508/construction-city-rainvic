@@ -35,4 +35,7 @@
     <item name="cp_center_color" type="color">#3390A4AE</item>
     <item name="cp_end_color" type="color">#6690A4AE</item>
 
+    <!-- product list item -->
+    <item name="cardview_background" type="color">#fff</item>
+
 </resources> 

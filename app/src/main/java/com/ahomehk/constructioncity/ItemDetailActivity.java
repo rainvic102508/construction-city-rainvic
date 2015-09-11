@@ -81,8 +81,8 @@ public class ItemDetailActivity extends ActionBarActivity {
     /**
      * Item details display
      */
-    private TextView tv_title_price, tv_title_size, tv_title_company, tv_title_color, tv_title_finish, tv_title_place_of_origin, tv_title_lead_time, tv_title_extra_info;
-    private TextView tv_item_type, tv_price, tv_size, tv_company, tv_color, tv_finish, tv_place_of_origin, tv_lead_time, tv_extra_info;
+    private TextView tv_title_serial, tv_title_price, tv_title_size, tv_title_company, tv_title_color, tv_title_finish, tv_title_place_of_origin, tv_title_lead_time, tv_title_extra_info;
+    private TextView tv_serial, tv_item_type, tv_price, tv_size, tv_company, tv_color, tv_finish, tv_place_of_origin, tv_lead_time, tv_extra_info;
 
 
 
@@ -107,6 +107,7 @@ public class ItemDetailActivity extends ActionBarActivity {
         //set actionbar title as an item title
         setTitle(item.getItem_title());
 
+        tv_serial = (TextView) findViewById(R.id.tv_serial);
         tv_item_type = (TextView) findViewById(R.id.tv_item_type);
         tv_size = (TextView) findViewById(R.id.tv_size);
         tv_price = (TextView) findViewById(R.id.tv_price);
@@ -117,6 +118,7 @@ public class ItemDetailActivity extends ActionBarActivity {
         tv_lead_time = (TextView) findViewById(R.id.tv_lead_time);
         tv_extra_info = (TextView) findViewById(R.id.tv_extra_info);
 
+        tv_title_serial = (TextView) findViewById(R.id.tv_title_serial);
         tv_title_size = (TextView) findViewById(R.id.tv_title_size);
         tv_title_price = (TextView) findViewById(R.id.tv_title_price);
         tv_title_company = (TextView) findViewById(R.id.tv_title_company);
@@ -125,6 +127,10 @@ public class ItemDetailActivity extends ActionBarActivity {
         tv_title_place_of_origin = (TextView) findViewById(R.id.tv_title_place_of_origin);
         tv_title_lead_time = (TextView) findViewById(R.id.tv_title_lead_time);
         tv_title_extra_info = (TextView) findViewById(R.id.tv_title_extra_info);
+
+
+        String serial_txt = item.getItem_img_file();
+        tv_serial.setText(serial_txt);
 
 
         String size_txt = "";
@@ -149,9 +155,11 @@ public class ItemDetailActivity extends ActionBarActivity {
 
 
         String price_txt = "";
-        if(item.getItem_price_min()==-1 && item.getItem_price_max()==-1) {
+        if(item.getItem_price_min() <= 0 && item.getItem_price_max() <= 0) {
             tv_price.setVisibility(View.GONE);
+            tv_title_price.setVisibility(View.GONE);
         } else {
+            price_txt += item.getItem_price_min_str() + "~" + item.getItem_price_max_str();
             tv_price.setText(price_txt);
         }
 //        if(item.getItem_price_min()!=-1)

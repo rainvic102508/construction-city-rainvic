@@ -15,7 +15,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.ArrayList;
 
 
-public class ThisWeekTopGridAdapter extends BaseAdapter {
+public class ThisWeekTopListAdapter extends BaseAdapter {
     private static final String TAG = "LVAdapter";
     private Context mContext;
     private ArrayList<Item> items;
@@ -25,7 +25,7 @@ public class ThisWeekTopGridAdapter extends BaseAdapter {
 
 
 
-    public ThisWeekTopGridAdapter(Context mContext, String[] arr) {
+    public ThisWeekTopListAdapter(Context mContext, String[] arr) {
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);
         DBAdapter dbAdapter = new DBAdapter(mContext);

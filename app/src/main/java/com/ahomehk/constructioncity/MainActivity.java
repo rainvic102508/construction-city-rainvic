@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -61,8 +62,8 @@ public class MainActivity extends ActionBarActivity {
      * GridView(TWT)
      *
      */
-    private GridView twtGrid;
-    private ThisWeekTopGridAdapter thisWeekTopGridAdapter;
+    private ListView twtListView;
+    private ThisWeekTopListAdapter thisWeekTopListAdapter;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -138,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initializeThisWeekTop(){
-        twtGrid = (GridView) findViewById(R.id.gv_this_week_top);
+        twtListView = (ListView) findViewById(R.id.lv_this_week_top);
 
         //initialize DBAdapter
         dBAdapter = new DBAdapter(this, null, null, 1);
@@ -153,14 +154,14 @@ public class MainActivity extends ActionBarActivity {
                         String[] arr = response.split(":");
                         Log.i(TAG, "arr :"+response);
                         //initialize list view adapter
-                        thisWeekTopGridAdapter = new ThisWeekTopGridAdapter(MainActivity.this, arr);
-                        twtGrid.setAdapter(thisWeekTopGridAdapter);
+                        thisWeekTopListAdapter = new ThisWeekTopListAdapter(MainActivity.this, arr);
+                        twtListView.setAdapter(thisWeekTopListAdapter);
 
-                        twtGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        twtListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                                 Intent intent = new Intent(MainActivity.this, ItemDetailActivity.class);
-                                intent.putExtra(ItemDetailActivity.EXTRA_TAG, thisWeekTopGridAdapter.getItem(position));
+                                intent.putExtra(ItemDetailActivity.EXTRA_TAG, thisWeekTopListAdapter.getItem(position));
                                 startActivity(intent);
                                 MainActivity.this.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                             }
