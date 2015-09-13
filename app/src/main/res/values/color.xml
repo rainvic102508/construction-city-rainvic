@@ -38,4 +38,8 @@
     <!-- product list item -->
     <item name="cardview_background" type="color">#fff</item>
 
+    <!--  -->
+    <item name="similar_product_background" type="color">#adadad</item>
+    <item name="similar_product_text" type="color">#fff</item>
+
 </resources> 

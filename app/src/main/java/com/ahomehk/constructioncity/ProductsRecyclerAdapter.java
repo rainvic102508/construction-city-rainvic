@@ -74,7 +74,7 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_products_item, parent, false);
+                .inflate(R.layout.item_fragment_product, parent, false);
 
         //v.setLayoutParams(new ActionBar.LayoutParams(img_size_dp, img_size_dp));
 

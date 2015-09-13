@@ -30,7 +30,7 @@ public class DBAdapter extends SQLiteOpenHelper {
     private final static String NEWS = "news";
 
     // database version
-    private final static int DATABASE_VERSION = 1;
+    private final static int DATABASE_VERSION = 2;
 
     //database name
     private final static String DATABASE_NAME = "ahomehk.db";
@@ -347,6 +347,68 @@ public class DBAdapter extends SQLiteOpenHelper {
                 " JOIN " + FTS_TABLE_ITEM +
                 " ON " + FTS_TABLE_ITEM + "." + COLUMN_TYPE_ID + "=" + FTS_TABLE_ITEM_TYPE + "." + COLUMN_TYPE_ID +
                 " WHERE " + FTS_TABLE_ITEM_TYPE + "." + COLUMN_TYPE_MAIN + " MATCH \'"+data+"\';";
+        ArrayList<Item> productArr = new ArrayList<>();
+
+        //cursor point to a location in your result
+        Cursor c = db.rawQuery(sql, null);
+
+        //move cursor to first
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            String img_file = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_FILE));
+            Item product = new Item(
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_ID)), c.getString(c.getColumnIndex(COLUMN_TYPE_ID)), c.getString(c.getColumnIndex(COLUMN_PROVIDER_ID)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MIN)), c.getString(c.getColumnIndex(COLUMN_ITEM_PRICE_MAX)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_HEIGHT)), c.getString(c.getColumnIndex(COLUMN_ITEM_THICKNESS)), c.getString(c.getColumnIndex(COLUMN_ITEM_WIDTH_HEIGHT)), img_file,
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TITLE)), c.getString(c.getColumnIndex(COLUMN_ITEM_CREATED_AT)), c.getString(c.getColumnIndex(COLUMN_ITEM_EXTRA_DESCRIPTION)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_TAG)), c.getString(c.getColumnIndex(COLUMN_ITEM_COLOR)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_FINISH)), c.getString(c.getColumnIndex(COLUMN_ITEM_PLACE_OF_ORIGIN)),
+                    c.getString(c.getColumnIndex(COLUMN_ITEM_LEAD_TIME))
+            );
+            product.setType_main(c.getString(c.getColumnIndex(COLUMN_TYPE_MAIN)));
+            product.setType_one(c.getString(c.getColumnIndex(COLUMN_TYPE_ONE)));
+            product.setType_two(c.getString(c.getColumnIndex(COLUMN_TYPE_TWO)));
+            product.setType_three(c.getString(c.getColumnIndex(COLUMN_TYPE_THREE)));
+            product.setType_four(c.getString(c.getColumnIndex(COLUMN_TYPE_FOUR)));
+            product.setType_five(c.getString(c.getColumnIndex(COLUMN_TYPE_FIVE)));
+            product.setType_extra(c.getString(c.getColumnIndex(COLUMN_TYPE_EXTRA)));
+            product.setType_created_at(c.getString(c.getColumnIndex(COLUMN_TYPE_CREATED_AT)));
+            product.setImg_add();
+            String img_names = c.getString(c.getColumnIndex(COLUMN_ITEM_IMG_NAMES));
+            product.setImg_names(img_names);
+            productArr.add(product);
+            c.moveToNext();
+        }
+        db.close();
+        return productArr;
+    }
+
+
+    /**
+     * Fetch Product items for a specific type
+     */
+
+    public ArrayList<Item> getSimilarProduct(int seriesOrType, String similarKey) {
+
+        if(seriesOrType == ItemDetailActivity.SAME_TYPE) {
+            return getProductsForAType(similarKey);
+        } else {
+            return getSimilarProductByKeyword(similarKey);
+        }
+
+    }
+
+    private ArrayList<Item> getSimilarProductByKeyword(String keyword) {
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT "+ FTS_TABLE_ITEM +".*, "+ FTS_TABLE_ITEM_TYPE +".*" +
+                " FROM " + FTS_TABLE_ITEM_TYPE +
+                " JOIN " + FTS_TABLE_ITEM +
+                " ON " + FTS_TABLE_ITEM + "." + COLUMN_TYPE_ID + "=" + FTS_TABLE_ITEM_TYPE + "." + COLUMN_TYPE_ID +
+                " WHERE " + COLUMN_ITEM_IMG_FILE + " MATCH \'" + keyword + "\';";
+
+        Log.i(TAG, "sql cmd called :"+sql);
+
         ArrayList<Item> productArr = new ArrayList<>();
 
         //cursor point to a location in your result

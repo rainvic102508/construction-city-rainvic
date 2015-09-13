@@ -38,6 +38,11 @@ public class ItemDetailActivity extends ActionBarActivity {
     public static final String EXTRA_TAG = "ItemDetailsExtra";
     public static final String EXTRA_DATA_TYPE = "DataTypeExtra";
 
+    public static final String KEY_SIMILAR_PRODUCT = "key_similar_product";
+    public static final String KEYWORD_SIMILAR = "keyword_similar";
+    public static final int SIMILAR_SERIES = 1;
+    public static final int SAME_TYPE =2;
+
     /**
      * Type of data (Products/Services/News....)
      */
@@ -233,7 +238,7 @@ public class ItemDetailActivity extends ActionBarActivity {
 
 
         Log.v(TAG, "lead time: "+item.getItem_lead_time());
-        tv_item_type.setText(getItemTypeText());
+        tv_item_type.setText(item.getItemTypeStr());
         tv_size.setText(size_txt);
         tv_company.setText(itemProvider.getProvider_title());
         tv_color.setText(color_txt);
@@ -260,33 +265,6 @@ public class ItemDetailActivity extends ActionBarActivity {
 //        Log.v(TAG, "series clicked!");
 //    }
 
-
-    private String getItemTypeText(){
-        String result = "";
-        result += item.getType_main();
-        if(!item.getType_one().equals("null")) {
-            result += " > " + item.getType_one();
-            if(!item.getType_two().equals("null")) {
-                result += " > " + item.getType_two();
-                if(!item.getType_three().equals("null")) {
-                    result += " > " + item.getType_three();
-                    if(!item.getType_four().equals("null")) {
-                        result += " > " + item.getType_four();
-                        if(!item.getType_five().equals("null")) {
-                            result += " > " + item.getType_five();
-                            if(!item.getType_extra().equals("null")) {
-                                String[] extra = item.getType_extra().split(",");
-                                for(String extra_type:extra){
-                                    result += ">>" + extra_type;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
 
     public void initializePager(){
         // Restore preferences
@@ -417,6 +395,23 @@ public class ItemDetailActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.v(TAG, "onStop:");
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
@@ -483,6 +478,18 @@ public class ItemDetailActivity extends ActionBarActivity {
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:" + itemProvider.getProvider_contact()));
         startActivity(callIntent);
+    }
+
+    public void onClickSimilarSeries(View view) {
+        Intent intent = new Intent(this, SimilarProductActivity.class);
+        intent.putExtra(KEY_SIMILAR_PRODUCT, SIMILAR_SERIES);
+        intent.putExtra(KEYWORD_SIMILAR, item.getItem_img_file().split("_")[0]);
+        startActivity(intent);
+
+    }
+
+    public void onClickSameType(View view) {
+        finish();
     }
 }
 

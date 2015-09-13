@@ -2,11 +2,12 @@ package com.ahomehk.constructioncity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ProductRecyclerActivity extends ActionBarActivity {
+public class ProductRecyclerActivity extends AppCompatActivity {
 
     private static final String TAG = ProductRecyclerActivity.class.getSimpleName();
 

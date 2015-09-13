@@ -333,4 +333,31 @@ public class Item extends ItemType implements Serializable{
         this.item_lead_time = item_lead_time;
     }
 
+    public String getItemTypeStr(){
+        String result = "";
+        result += getType_main();
+        if(!getType_one().equals("null")) {
+            result += " > " + getType_one();
+            if(!getType_two().equals("null")) {
+                result += " > " + getType_two();
+                if(!getType_three().equals("null")) {
+                    result += " > " + getType_three();
+                    if(!getType_four().equals("null")) {
+                        result += " > " + getType_four();
+                        if(!getType_five().equals("null")) {
+                            result += " > " + getType_five();
+                            if(!getType_extra().equals("null")) {
+                                String[] extra = getType_extra().split(",");
+                                for(String extra_type:extra){
+                                    result += ">>" + extra_type;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
 }

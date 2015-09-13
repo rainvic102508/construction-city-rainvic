@@ -79,4 +79,5 @@
     <string name="splash_title_1">CONSTRUCTION</string>
     <string name="splash_title_2">CITY</string>
     <string name="no_name_title">No/Name</string>
+    <string name="title_activity_similar_product">SimilarProductActivity</string>
 </resources>

@@ -60,7 +60,9 @@ public class ThisWeekTopListAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.item_this_week_top, parent, false);
-            holder.text = (TextView) convertView.findViewById(R.id.tv_twt_item_title);
+            holder.title = (TextView) convertView.findViewById(R.id.tv_twt_item_title);
+            holder.text = (TextView) convertView.findViewById(R.id.tv_twt_item_text);
+            holder.noName = (TextView) convertView.findViewById(R.id.tv_twt_item_no);
             holder.img = (NetworkImageView) convertView.findViewById(R.id.iv_twt_item);
 
 
@@ -71,13 +73,15 @@ public class ThisWeekTopListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.text.setText(getItem(position).getItem_title());
+        holder.title.setText(getItem(position).getItem_title());
+        holder.text.setText(getItem(position).getItemTypeStr());
+        holder.noName.setText(getItem(position).getItem_img_file());
         holder.img.setImageUrl(getItem(position).getImg_add()+getItem(position).getImg_names()[0], mImageLoader);
         // Set the URL of the image that should be loaded into this view, and
         // specify the ImageLoader that will be used to make the request.
 
         holder.img.getLayoutParams().height = img_size;
-        holder.text.setVisibility(View.VISIBLE);
+        holder.title.setVisibility(View.VISIBLE);
         //holder.img.getLayoutParams().width = img_size;
 
         return convertView;
@@ -89,7 +93,9 @@ public class ThisWeekTopListAdapter extends BaseAdapter {
 
     class ViewHolder {
         NetworkImageView img;
+        TextView title;
         TextView text;
+        TextView noName;
     }
 
     private int getImgSize(){

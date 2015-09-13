@@ -121,10 +121,11 @@ public class MainActivity extends ActionBarActivity {
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
-                if (currentPage == ads_src.length-1) {
+                currentPage++;
+                if (currentPage == ads_src.length) {
                     currentPage = 0;
                 }
-                mPager.setCurrentItem(currentPage++, true);
+                mPager.setCurrentItem(currentPage, true);
             }
         };
 
@@ -245,22 +246,13 @@ public class MainActivity extends ActionBarActivity {
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position > 0) {
-                    ads_prev.setVisibility(View.VISIBLE);
-                } else {
-                    ads_prev.setVisibility(View.GONE);
-                }
 
-                if (position + 1 < ads_src.length) {
-                    ads_next.setVisibility(View.VISIBLE);
-                } else {
-                    ads_next.setVisibility(View.GONE);
-                }
             }
 
             @Override
             public void onPageSelected(int position) {
                 currentPage = position;
+                setSlidingButtons(position);
             }
 
             @Override
@@ -364,5 +356,18 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    private void setSlidingButtons(int position) {
+        if (position == 0) {
+            ads_prev.setVisibility(View.GONE);
+        } else {
+            ads_prev.setVisibility(View.VISIBLE);
+        }
+
+        if (position + 1 == ads_src.length) {
+            ads_next.setVisibility(View.GONE);
+        } else {
+            ads_next.setVisibility(View.VISIBLE);
+        }
+    }
 
 }
